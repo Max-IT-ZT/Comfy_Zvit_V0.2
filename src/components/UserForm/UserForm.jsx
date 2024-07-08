@@ -76,8 +76,8 @@ export default function UserForm({ plan }) {
             />
             <Field
               type="number"
-              inputMode="numeric"
-              pattern="[0-9.].*"
+              inputMode="decimal"
+              pattern="[0-9]*"
               name="percentageIt"
               placeholder="Частка ІТ"
               className={css.input}
@@ -92,8 +92,8 @@ export default function UserForm({ plan }) {
             />
             <Field
               type="number"
-              inputMode="numeric"
-              pattern="[0-9.].*"
+              inputMode="decimal"
+              pattern="[0-9]*"
               name="percentageHs"
               placeholder="Частка ХС"
               className={css.input}
