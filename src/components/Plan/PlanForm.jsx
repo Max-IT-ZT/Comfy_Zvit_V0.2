@@ -2,7 +2,7 @@ import { Field, Form, Formik } from "formik";
 import { useId } from "react";
 import css from "./PlanForm.module.css";
 
-export default function PlanForm({ newPlan, setDay, day }) {
+export default function PlanForm({ newPlan, setDay, day, plan }) {
   const itId = useId();
   const hsId = useId();
   const dayId = useId();
@@ -27,37 +27,62 @@ export default function PlanForm({ newPlan, setDay, day }) {
   };
 
   return (
-    <Formik
-      enableReinitialize
-      initialValues={{ hs: "", it: "", day: day }}
-      onSubmit={handleSave}
-    >
-      {({ handleSubmit }) => (
-        <Form className={css.Form} onSubmit={handleSubmit}>
-          <Field
-            onChange={handleDayChange}
-            type="number"
-            name="day"
-            id={dayId}
-            inputMode="numeric"
-            pattern="[0-9]*"
-            placeholder="День"
-          />
-          <Field
-            type="tel"
-            name="it"
-            id={itId}
-            placeholder="Введіть суму іт-сервісів"
-          />
-          <Field
-            type="tel"
-            name="hs"
-            id={hsId}
-            placeholder="Введіть суму хеппі-сервісу"
-          />
-          <button type="submit">Зберігти</button>
-        </Form>
-      )}
-    </Formik>
+    <div>
+      <Formik
+        enableReinitialize
+        initialValues={{ hs: "", it: "", day: day }}
+        onSubmit={handleSave}
+      >
+        {({ handleSubmit }) => (
+          <Form className={css.form} onSubmit={handleSubmit}>
+            <Field
+              className={css.input}
+              onChange={handleDayChange}
+              type="number"
+              name="day"
+              id={dayId}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              placeholder="День"
+            />
+            <Field
+              className={css.input}
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              name="it"
+              id={itId}
+              placeholder="Введіть суму іт-сервісів"
+            />
+            <Field
+              className={css.input}
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              name="hs"
+              id={hsId}
+              placeholder="Введіть суму хеппі-сервісу"
+            />
+            <button className={css.formBtn} type="submit">
+              Зберігти
+            </button>
+          </Form>
+        )}
+      </Formik>
+      <ul className={css.planList}>
+        <li className={css.header}>
+          <span>День</span>
+          <span>План ІТ</span>
+          <span>План ХС</span>
+        </li>
+        {plan.map((p, index) => (
+          <li key={index} className={css.planItem}>
+            <span>{p.day}</span>
+            <span>{p.it}</span>
+            <span>{p.hs}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

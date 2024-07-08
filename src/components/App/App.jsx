@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PlanForm from "../Plan/PlanForm";
 import css from "./App.module.css";
 import { db, ref, set, get, child } from "../../firebase";
+import UserForm from "../UserForm/UserForm";
 
 export default function App() {
   const [day, setDay] = useState(1);
@@ -44,22 +45,8 @@ export default function App() {
 
   return (
     <div className={css.container}>
-      <p>Hello world</p>
-      <PlanForm newPlan={updatePlan} setDay={setDay} day={day} />
-      <ul className={css.planList}>
-        <li className={css.header}>
-          <span>День</span>
-          <span>План ІТ</span>
-          <span>План ХС</span>
-        </li>
-        {plan.map((p, index) => (
-          <li key={index} className={css.planItem}>
-            <span>{p.day}</span>
-            <span>{p.it}</span>
-            <span>{p.hs}</span>
-          </li>
-        ))}
-      </ul>
+      <UserForm plan={plan} />
+      <PlanForm newPlan={updatePlan} setDay={setDay} day={day} plan={plan} />
     </div>
   );
 }

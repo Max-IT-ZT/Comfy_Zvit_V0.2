@@ -1,0 +1,18 @@
+.modal {
+  border-radius: 20px;
+  background-color: rgba(160, 160, 160, 0.273);
+  padding: 20px 10px;
+  text-align: center;
+  width: 300px;
+  font-weight: 500;
+  font-size: 15px;
+}
+.modalBtn {
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgba(240, 248, 255, 0.742);
+  color: black;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
