@@ -31,7 +31,7 @@ const Modal = ({ isOpen, closeModal, children }) => {
     >
       <div className={css.modal}>
         <h3>
-          <GiCrownedSkull color="gold" />
+          <GiCrownedSkull />
           Звіт Житомир
           <GiCrownedSkull />
         </h3>

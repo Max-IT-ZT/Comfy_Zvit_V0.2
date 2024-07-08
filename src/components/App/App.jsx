@@ -65,8 +65,8 @@ export default function App() {
         <PlanForm newPlan={updatePlan} setDay={setDay} day={day} plan={plan} />
       ) : (
         <>
-          <UserForm plan={plan} onSumItChange={setItSum} />
           <Salary itSum={itSum} />
+          <UserForm plan={plan} onSumItChange={setItSum} />
         </>
       )}
     </div>

@@ -82,26 +82,24 @@ export default function UserForm({ plan, onSumItChange }) {
             <Field
               type="number"
               inputMode="numeric"
-              name="sumHs"
-              placeholder="Сума ХС"
+              name="percentageIt"
+              placeholder="Частка ІТ"
               className={css.input}
-              onChange={handleChange}
             />
             <Field
               type="number"
               inputMode="numeric"
-              name="percentageIt"
-              placeholder="Частка ІТ"
+              name="sumHs"
+              placeholder="Сума ХС"
               className={css.input}
-              onChange={handleChange}
             />
+
             <Field
               type="number"
               inputMode="numeric"
               name="percentageHs"
               placeholder="Частка ХС"
               className={css.input}
-              onChange={handleChange}
             />
             <Field
               type="number"
@@ -109,7 +107,6 @@ export default function UserForm({ plan, onSumItChange }) {
               name="phone"
               placeholder="Кількість Смартфонів"
               className={css.input}
-              onChange={handleChange}
             />
             <Field
               type="number"
@@ -117,7 +114,6 @@ export default function UserForm({ plan, onSumItChange }) {
               name="tv"
               placeholder="Кількість Телевізорів"
               className={css.input}
-              onChange={handleChange}
             />
             <Field
               type="number"
@@ -125,7 +121,6 @@ export default function UserForm({ plan, onSumItChange }) {
               name="pc"
               placeholder="Кількість Ноутбуків"
               className={css.input}
-              onChange={handleChange}
             />
             <button className={css.formBtn} type="submit">
               Відправити
