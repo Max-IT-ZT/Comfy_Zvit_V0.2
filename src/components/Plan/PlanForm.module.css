@@ -3,27 +3,48 @@
 }
 
 .planList {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
-  margin-top: 20px;
+  margin: 0;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.header,
+.header {
+  display: flex;
+  font-weight: bold;
+  background-color: #f2f2f2;
+  border-bottom: 2px solid #ddd;
+}
+
+.planItem {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+}
+
+.planItem:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.itemSpan {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+}
+
+/* .header,
 .planItem {
   display: flex;
   justify-content: center;
   gap: 50px;
   padding: 10px;
   border-bottom: 1px solid #ccc;
-}
+} */
 
 .header {
   font-weight: bold;
 }
 
-.planItem span {
-  width: 100px;
-}
 .form {
   display: flex;
   flex-direction: column;

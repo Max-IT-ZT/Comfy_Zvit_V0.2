@@ -10,7 +10,7 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     textAlign: "left",
-    width: "320px",
+    width: "250px",
   },
 };
 
@@ -20,7 +20,6 @@ const Modal = ({ isOpen, closeModal, children }) => {
   const handleCopyText = () => {
     navigator.clipboard.writeText(children);
     closeModal();
-    // Закрийте модальне вікно після копіювання
   };
 
   return (
@@ -30,13 +29,9 @@ const Modal = ({ isOpen, closeModal, children }) => {
       style={customStyles}
       overlayClassName={css.overlay}
     >
-      {/* <button className={css.closeButton} onClick={closeModal}>
-        &times;
-      </button> */}
-
       <div className={css.modal}>
         <h3>
-          <GiCrownedSkull />
+          <GiCrownedSkull color="gold" />
           Звіт Житомир
           <GiCrownedSkull />
         </h3>

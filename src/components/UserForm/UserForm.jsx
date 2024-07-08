@@ -1,9 +1,9 @@
+import { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import css from "./UserForm.module.css";
 import Modal from "../Modal/Modal";
-import { useState } from "react";
 
-export default function UserForm({ plan }) {
+export default function UserForm({ plan, onSumItChange }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
 
@@ -50,6 +50,11 @@ export default function UserForm({ plan }) {
     setModalOpen(false);
   };
 
+  const handleSumItChange = (e, handleChange) => {
+    handleChange(e);
+    onSumItChange(e.target.value);
+  };
+
   return (
     <>
       <Formik
@@ -64,63 +69,63 @@ export default function UserForm({ plan }) {
         }}
         onSubmit={handleSubmitForm}
       >
-        {() => (
+        {({ handleChange }) => (
           <Form className={css.form}>
             <Field
               type="number"
               inputMode="numeric"
-              pattern="[0-9]*"
               name="sumIt"
               placeholder="Сума ІТ"
               className={css.input}
-            />
-            <Field
-              type="number"
-              inputMode="decimal"
-              pattern="[0-9]*"
-              name="percentageIt"
-              placeholder="Частка ІТ"
-              className={css.input}
+              onChange={(e) => handleSumItChange(e, handleChange)}
             />
             <Field
               type="number"
               inputMode="numeric"
-              pattern="[0-9]*"
               name="sumHs"
               placeholder="Сума ХС"
               className={css.input}
+              onChange={handleChange}
             />
             <Field
               type="number"
-              inputMode="decimal"
-              pattern="[0-9]*"
+              inputMode="numeric"
+              name="percentageIt"
+              placeholder="Частка ІТ"
+              className={css.input}
+              onChange={handleChange}
+            />
+            <Field
+              type="number"
+              inputMode="numeric"
               name="percentageHs"
               placeholder="Частка ХС"
               className={css.input}
+              onChange={handleChange}
             />
             <Field
               type="number"
               inputMode="numeric"
-              pattern="[0-9]*"
               name="phone"
               placeholder="Кількість Смартфонів"
               className={css.input}
+              onChange={handleChange}
             />
             <Field
               type="number"
               inputMode="numeric"
-              pattern="[0-9]*"
               name="tv"
               placeholder="Кількість Телевізорів"
               className={css.input}
+              onChange={handleChange}
             />
             <Field
               type="number"
               inputMode="numeric"
-              pattern="[0-9]*"
               name="pc"
               placeholder="Кількість Ноутбуків"
               className={css.input}
+              onChange={handleChange}
             />
             <button className={css.formBtn} type="submit">
               Відправити

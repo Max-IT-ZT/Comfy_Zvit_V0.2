@@ -3,10 +3,14 @@ import PlanForm from "../Plan/PlanForm";
 import css from "./App.module.css";
 import { db, ref, set, get, child } from "../../firebase";
 import UserForm from "../UserForm/UserForm";
+import Header from "../Header/Header";
+import Salary from "../Salary/Salary";
 
 export default function App() {
   const [day, setDay] = useState(1);
   const [plan, setPlan] = useState([]);
+  const [showPlanForm, setShowPlanForm] = useState(false);
+  const [itSum, setItSum] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,13 +44,31 @@ export default function App() {
     const updatedPlans = [...plan];
     updatedPlans[newPlan.day - 1] = newPlan;
     setPlan(updatedPlans);
-    saveData(updatedPlans); // Save the updated plan to Firebase
+    saveData(updatedPlans);
+  };
+
+  const toggleComponent = () => {
+    setShowPlanForm(true);
+  };
+
+  const resetComponent = () => {
+    setShowPlanForm(false);
   };
 
   return (
     <div className={css.container}>
-      <UserForm plan={plan} />
-      <PlanForm newPlan={updatePlan} setDay={setDay} day={day} plan={plan} />
+      <Header
+        toggleComponent={toggleComponent}
+        resetComponent={resetComponent}
+      />
+      {showPlanForm ? (
+        <PlanForm newPlan={updatePlan} setDay={setDay} day={day} plan={plan} />
+      ) : (
+        <>
+          <UserForm plan={plan} onSumItChange={setItSum} />
+          <Salary itSum={itSum} />
+        </>
+      )}
     </div>
   );
 }

@@ -71,15 +71,15 @@ export default function PlanForm({ newPlan, setDay, day, plan }) {
       </Formik>
       <ul className={css.planList}>
         <li className={css.header}>
-          <span>День</span>
-          <span>План ІТ</span>
-          <span>План ХС</span>
+          <span className={css.itemSpan}>День</span>
+          <span className={css.itemSpan}>План ІТ</span>
+          <span className={css.itemSpan}>План ХС</span>
         </li>
         {plan.map((p, index) => (
           <li key={index} className={css.planItem}>
-            <span>{p.day}</span>
-            <span>{p.it}</span>
-            <span>{p.hs}</span>
+            <span className={css.itemSpan}>{p.day}</span>
+            <span className={css.itemSpan}>{`${p.it} грн.`}</span>
+            <span className={css.itemSpan}>{`${p.hs} грн.`}</span>
           </li>
         ))}
       </ul>
