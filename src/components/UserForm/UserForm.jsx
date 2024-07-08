@@ -81,7 +81,7 @@ export default function UserForm({ plan, onSumItChange }) {
             />
             <Field
               type="number"
-              inputMode="numeric"
+              inputMode="decimal"
               name="percentageIt"
               placeholder="Частка ІТ"
               className={css.input}
@@ -96,7 +96,7 @@ export default function UserForm({ plan, onSumItChange }) {
 
             <Field
               type="number"
-              inputMode="numeric"
+              inputMode="decimal"
               name="percentageHs"
               placeholder="Частка ХС"
               className={css.input}

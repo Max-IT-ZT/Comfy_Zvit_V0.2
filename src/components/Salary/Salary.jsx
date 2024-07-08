@@ -25,6 +25,7 @@ export default function Salary({ itSum }) {
       <div className={css.editContainer}>
         <input
           type="number"
+          inputMode="decimal"
           className={css.salaryInput}
           value={coefficient}
           onChange={handleCoefficientChange}
