@@ -26,28 +26,40 @@ export default function App() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const saveData = async () => {
-      try {
-        await set(ref(db, "plans"), plan);
-        console.log("Data saved to Firebase: ", plan);
-      } catch (error) {
-        console.error("Error saving data: ", error);
-      }
-    };
-    saveData();
-  }, [plan]);
+  const saveData = async (updatedPlan) => {
+    try {
+      await set(ref(db, "plans"), updatedPlan);
+      console.log("Data saved to Firebase: ", updatedPlan);
+    } catch (error) {
+      console.error("Error saving data: ", error);
+    }
+  };
 
   const updatePlan = (newPlan) => {
     const updatedPlans = [...plan];
     updatedPlans[newPlan.day - 1] = newPlan;
     setPlan(updatedPlans);
+    saveData(updatedPlans); // Save the updated plan to Firebase
   };
 
   return (
     <div className={css.container}>
       <p>Hello world</p>
       <PlanForm newPlan={updatePlan} setDay={setDay} day={day} />
+      <ul className={css.planList}>
+        <li className={css.header}>
+          <span>День</span>
+          <span>План ІТ</span>
+          <span>План ХС</span>
+        </li>
+        {plan.map((p, index) => (
+          <li key={index} className={css.planItem}>
+            <span>{p.day}</span>
+            <span>{p.it}</span>
+            <span>{p.hs}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
