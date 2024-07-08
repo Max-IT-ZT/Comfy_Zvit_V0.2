@@ -7,34 +7,41 @@ export default function PlanForm({ newPlan, setDay, day }) {
   const hsId = useId();
   const dayId = useId();
 
-  const handleDayChange = (event, setFieldValue) => {
-    const value = parseInt(event.target.value, 10);
-    if (!isNaN(value)) {
-      setDay(value);
-      setFieldValue("day", value);
+  const handleDayChange = (event) => {
+    const value = event.target.value.trim();
+    if (value === "") {
+      setDay(""); // Залишити порожнім, якщо введено пустий рядок
+    } else {
+      const intValue = parseInt(value, 10);
+      if (!isNaN(intValue)) {
+        setDay(intValue); // Встановити день, якщо введено числове значення
+      }
     }
+  };
+
+  const handleSave = (values, actions) => {
+    // Зберігання плану зі збільшенням дня на 1
+    newPlan(values);
+    setDay(day + 1);
+    actions.resetForm();
   };
 
   return (
     <Formik
       enableReinitialize
       initialValues={{ hs: "", it: "", day: day }}
-      onSubmit={(values, actions) => {
-        newPlan(values);
-        setDay(day + 1);
-        actions.resetForm({
-          values: { ...values, hs: "", it: "", day: day + 1 },
-        });
-      }}
+      onSubmit={handleSave}
     >
-      {({ setFieldValue }) => (
-        <Form className={css.Form}>
+      {({ handleSubmit }) => (
+        <Form className={css.Form} onSubmit={handleSubmit}>
           <Field
+            onChange={handleDayChange}
             type="number"
             name="day"
             id={dayId}
-            value={day}
-            onChange={(event) => handleDayChange(event, setFieldValue)}
+            inputMode="numeric"
+            pattern="[0-9]*"
+            placeholder="День"
           />
           <Field
             type="tel"
