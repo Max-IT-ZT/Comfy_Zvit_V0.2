@@ -66,14 +66,65 @@ export default function UserForm({ plan }) {
       >
         {() => (
           <Form className={css.form}>
-            <Field type="tel" name="sumIt" placeholder="Сума ІТ" className={css.input}/>
-            <Field type="number" name="percentageIt" placeholder="Частка ІТ" className={css.input}/>
-            <Field type="tel" name="sumHs" placeholder="Сума ХС" className={css.input}/>
-            <Field type="number" name="percentageHs" placeholder="Частка ХС" className={css.input}/>
-            <Field type="tel" name="phone" placeholder="Кількість Смартфонів" className={css.input}/>
-            <Field type="tel" name="tv" placeholder="Кількість Телевізорів" className={css.input}/>
-            <Field type="tel" name="pc" placeholder="Кількість Ноутбуків" className={css.input}/>
-            <button className={css.formBtn} type="submit">Відправити</button>
+            <Field
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              name="sumIt"
+              placeholder="Сума ІТ"
+              className={css.input}
+            />
+            <Field
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9.].*"
+              name="percentageIt"
+              placeholder="Частка ІТ"
+              className={css.input}
+            />
+            <Field
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              name="sumHs"
+              placeholder="Сума ХС"
+              className={css.input}
+            />
+            <Field
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9.].*"
+              name="percentageHs"
+              placeholder="Частка ХС"
+              className={css.input}
+            />
+            <Field
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              name="phone"
+              placeholder="Кількість Смартфонів"
+              className={css.input}
+            />
+            <Field
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              name="tv"
+              placeholder="Кількість Телевізорів"
+              className={css.input}
+            />
+            <Field
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              name="pc"
+              placeholder="Кількість Ноутбуків"
+              className={css.input}
+            />
+            <button className={css.formBtn} type="submit">
+              Відправити
+            </button>
           </Form>
         )}
       </Formik>
