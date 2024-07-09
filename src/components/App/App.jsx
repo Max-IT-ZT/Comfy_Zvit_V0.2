@@ -5,7 +5,7 @@ import { db, ref, set, get, child } from "../../firebase";
 import UserForm from "../UserForm/UserForm";
 import Header from "../Header/Header";
 import Salary from "../Salary/Salary";
-import { Helmet } from "react-helmet";
+
 export default function App() {
   const [day, setDay] = useState(1);
   const [plan, setPlan] = useState([]);
@@ -56,33 +56,19 @@ export default function App() {
   };
 
   return (
-    <>
-      <Helmet>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Comfy_Zvit" />
-        <link rel="apple-touch-icon" href="/path/to/your/app-icon.png" />
-      </Helmet>
-      <div className={css.container}>
-        <Header
-          toggleComponent={toggleComponent}
-          resetComponent={resetComponent}
-        />
-        {showPlanForm ? (
-          <PlanForm
-            newPlan={updatePlan}
-            setDay={setDay}
-            day={day}
-            plan={plan}
-          />
-        ) : (
-          <>
-            <Salary itSum={itSum} />
-            <UserForm plan={plan} onSumItChange={setItSum} />
-          </>
-        )}
-      </div>
-    </>
+    <div className={css.container}>
+      <Header
+        toggleComponent={toggleComponent}
+        resetComponent={resetComponent}
+      />
+      {showPlanForm ? (
+        <PlanForm newPlan={updatePlan} setDay={setDay} day={day} plan={plan} />
+      ) : (
+        <>
+          <Salary itSum={itSum} />
+          <UserForm plan={plan} onSumItChange={setItSum} />
+        </>
+      )}
+    </div>
   );
 }
