@@ -30,7 +30,7 @@ const Modal = ({ isOpen, closeModal, children }) => {
       overlayClassName={css.overlay}
     >
       <div className={css.modal}>
-        <h3>
+        <h3 className={css.title}>
           <GiCrownedSkull />
           Звіт Житомир
           <GiCrownedSkull />

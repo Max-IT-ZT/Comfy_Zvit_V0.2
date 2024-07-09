@@ -9,6 +9,9 @@
   font-size: 15px;
   gap: 10px;
 }
+.title {
+  text-align: center;
+}
 .modalBtn {
   border: 1px solid black;
   border-radius: 10px;
