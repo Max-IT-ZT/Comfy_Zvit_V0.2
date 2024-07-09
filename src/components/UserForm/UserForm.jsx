@@ -30,13 +30,13 @@ export default function UserForm({ plan, onSumItChange }) {
         modalMessage += `\nЧастка: ${percentageHs}%`;
       }
       if (phone) {
-        modalMessage += `\nСмарт ${phone}`;
-      }
-      if (tv) {
-        modalMessage += `\nТВ ${tv}`;
+        modalMessage += `\n📱 - ${phone}шт.`;
       }
       if (pc) {
-        modalMessage += `\nНоут ${pc}`;
+        modalMessage += `\n💻 - ${pc}шт.`;
+      }
+      if (tv) {
+        modalMessage += `\n📺 - ${tv}шт.`;
       }
 
       setModalContent(modalMessage);
@@ -111,17 +111,18 @@ export default function UserForm({ plan, onSumItChange }) {
             <Field
               type="number"
               inputMode="numeric"
-              name="tv"
-              placeholder="Кількість Телевізорів"
+              name="pc"
+              placeholder="Кількість Ноутбуків"
               className={css.input}
             />
             <Field
               type="number"
               inputMode="numeric"
-              name="pc"
-              placeholder="Кількість Ноутбуків"
+              name="tv"
+              placeholder="Кількість Телевізорів"
               className={css.input}
             />
+
             <button className={css.formBtn} type="submit">
               Відправити
             </button>
