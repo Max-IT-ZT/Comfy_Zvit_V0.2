@@ -3,12 +3,12 @@
   "name": "Comfy_zvit",
   "icons": [
     {
-      "src": "./public/comfy.PNG",
+      "src": "comfy.PNG",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./public/comfy.PNG",
+      "src": "comfy.PNG",
       "sizes": "512x512",
       "type": "image/png"
     }
