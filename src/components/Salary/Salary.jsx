@@ -27,27 +27,37 @@ export default function Salary({ itSum }) {
     <div className={css.salaryContainer}>
       <h2 className={css.salaryHeader}>Заробітна плата</h2>
       <div className={css.editContainer}>
+        <label htmlFor="kof" className={css.label}>
+          Коефіцієнт
+        </label>
         <input
           type="number"
           inputMode="decimal"
           className={css.salaryInput}
+          name="kof"
           value={coefficient}
           onChange={handleCoefficientChange}
           placeholder="КОФ"
         />
       </div>
-      <div className={css.salaryRow}>
-        <span>1 IT</span>
-        <span>2 IT</span>
-        <span>3 IT</span>
-        <span>4 IT</span>
-      </div>
-      <div className={css.salaryRow}>
-        <span>{calculateSalary(itSum, 1)} грн</span>
-        <span>{calculateSalary(itSum, 2)} грн</span>
-        <span>{calculateSalary(itSum, 3)} грн</span>
-        <span>{calculateSalary(itSum, 4)} грн</span>
-      </div>
+      <ul className={css.salaryRow}>
+        <li className={css.item}>
+          <span>1 IT</span>
+          <span>{calculateSalary(itSum, 1)} грн</span>
+        </li>
+        <li className={css.item}>
+          <span>2 IT</span>
+          <span>{calculateSalary(itSum, 2)} грн</span>
+        </li>
+        <li className={css.item}>
+          <span>3 IT</span>
+          <span>{calculateSalary(itSum, 3)} грн</span>
+        </li>
+        <li className={css.item}>
+          <span>4 IT</span>
+          <span>{calculateSalary(itSum, 4)} грн</span>
+        </li>
+      </ul>
     </div>
   );
 }

@@ -11,7 +11,7 @@
 }
 
 .input {
-  padding: 5px 20px;
+  padding: 7px 20px;
   border: 1px solid #ccc;
   border-radius: 20px;
   transition: border-color 0.3s;
@@ -31,6 +31,7 @@
   transition: all 0.3s;
   pointer-events: none;
   font-size: 13px;
+  border: 10px;
 }
 
 .input:focus + .label,
@@ -39,6 +40,8 @@
   left: 10px;
   color: #000000;
   font-size: 12px;
+  background-color: orange;
+  border-radius: 10px;
 }
 
 .formBtn {
