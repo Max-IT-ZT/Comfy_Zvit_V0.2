@@ -57,6 +57,7 @@ export default function UserForm({ plan, onSumItChange }) {
   };
 
   const handleSumItChange = (e, handleChange) => {
+    e.target.value = e.target.value.replace(".", ",");
     handleChange(e);
     onSumItChange(e.target.value);
   };

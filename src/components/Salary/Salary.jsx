@@ -12,11 +12,15 @@ export default function Salary({ itSum }) {
   }, [coefficient]);
 
   const handleCoefficientChange = (e) => {
-    setCoefficient(parseFloat(e.target.value));
+    const value = e.target.value;
+    // Заміняємо кому на крапку, якщо необхідно
+    const normalizedValue = value.replace(",", ".");
+    setCoefficient(normalizedValue);
   };
 
   const calculateSalary = (sum, divisor) => {
-    return ((sum * coefficient) / 100 / divisor).toFixed(0);
+    const coefficientValue = parseFloat(coefficient) || 0;
+    return ((sum * coefficientValue) / 100 / divisor).toFixed(0);
   };
 
   return (
