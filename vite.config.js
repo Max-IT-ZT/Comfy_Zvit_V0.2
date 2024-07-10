@@ -8,7 +8,7 @@ export default defineConfig({
     VitePWA({
       manifest: {
         short_name: "Comfy-Zvit",
-        name: "Comfy-Zvit",
+        name: "Comfy-Zvit-v2",
         icons: [
           {
             src: "./public/comfy.png",
