@@ -11,17 +11,17 @@ export default defineConfig({
         name: "Comfy-Zvit",
         icons: [
           {
-            src: "./public/icons/comfy-192x192.png",
+            src: "./public/vite.svg",
             sizes: "192x192",
-            type: "image/png",
+            type: "image/svg+xmls",
           },
           {
-            src: "./public/icons/comfy-512x512.png",
+            src: "./public/vite.svg",
             sizes: "512x512",
-            type: "image/png",
+            type: "image/svg+xmls",
           },
         ],
-        start_url: "/",
+        start_url: ".",
         display: "standalone",
         theme_color: "#000000",
         background_color: "#ffffff",
