@@ -8,20 +8,20 @@ export default defineConfig({
     VitePWA({
       manifest: {
         short_name: "Comfy-Zvit",
-        name: "Comfy-Zvit-v2",
+        name: "Comfy-Zvit",
         icons: [
           {
-            src: "./public/comfy.png",
+            src: "icons/comfy-192x192.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "./public/comfy.png",
+            src: "icons/comfy-512x512.png",
             sizes: "512x512",
             type: "image/png",
           },
         ],
-        start_url: ".",
+        start_url: "/",
         display: "standalone",
         theme_color: "#000000",
         background_color: "#ffffff",
