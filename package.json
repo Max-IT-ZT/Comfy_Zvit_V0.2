@@ -19,6 +19,7 @@
     "react-icons": "^5.2.1",
     "react-loader-spinner": "^6.1.6",
     "react-modal": "^3.16.1",
+    "vite-plugin-pwa": "^0.20.0",
     "yup": "^1.4.0"
   },
   "devDependencies": {
