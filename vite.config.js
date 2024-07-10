@@ -16,13 +16,13 @@ export default defineConfig({
         theme_color: "#000000",
         icons: [
           {
-            src: "/comfy-192x192.png",
+            src: "/android-chrome-192x192.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "/comfy-512x512.png",
-            sizes: "512x512",
+            src: "/android-chrome-256x256.png",
+            sizes: "256x256",
             type: "image/png",
           },
         ],
