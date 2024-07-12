@@ -1,7 +1,11 @@
 import { useState } from "react";
 import css from "./Header.module.css";
 
-export default function Header({ toggleComponent, resetComponent }) {
+export default function Header({
+  toggleComponent,
+  resetComponent,
+  showGalleryComponent,
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -29,6 +33,9 @@ export default function Header({ toggleComponent, resetComponent }) {
           Заповнити план
         </button>
         <button onClick={() => handleMenuClick(resetComponent)}>Звіт</button>
+        <button onClick={() => handleMenuClick(showGalleryComponent)}>
+          Галерея
+        </button>
       </nav>
     </header>
   );

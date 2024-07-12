@@ -1,0 +1,22 @@
+/* src/components/Gallery/Gallery.module.css */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.imageContainer {
+  flex: 1 1 200px; /* Адаптивне зображення */
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.title {
+  text-align: center;
+}
