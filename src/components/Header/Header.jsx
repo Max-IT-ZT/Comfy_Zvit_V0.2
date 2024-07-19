@@ -36,24 +36,22 @@ export default function Header({
         <button onClick={() => handleMenuClick(showGalleryComponent)}>
           Галерея
         </button>
-        <button>
-          <a
-            href="https://elearning.comfy.ua/wallet"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Мій Гаманець
-          </a>
-        </button>
-        <button>
-          <a
-            href="https://docs.google.com/spreadsheets/d/1Wxgk7YfdiOrgqhAZ-FJKSfee88IIFO-yeGUFCF_af6U/edit#gid=0&range=A2:AG8"
-            target="_blank "
-            rel="noreferrer"
-          >
-            Графік на місяць
-          </a>
-        </button>
+
+        <a
+          href="https://elearning.comfy.ua/wallet"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <button> Мій Гаманець</button>
+        </a>
+
+        <a
+          href="https://docs.google.com/spreadsheets/d/1Wxgk7YfdiOrgqhAZ-FJKSfee88IIFO-yeGUFCF_af6U/edit#gid=0&range=A2:AG8"
+          target="_blank "
+          rel="noreferrer"
+        >
+          <button>Графік на місяць</button>
+        </a>
       </nav>
     </header>
   );
