@@ -41,7 +41,7 @@ const Contacts = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Чат-Бот SwetTv - @sweet_tv_techsupport_bot
+            Чат-Бот SwetTv <span>@sweet_tv_techsupport_bot</span>
           </a>
         </li>
         <li className={css.hiddenPhone}>
