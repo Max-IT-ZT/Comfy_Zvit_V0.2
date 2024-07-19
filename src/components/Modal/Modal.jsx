@@ -1,8 +1,11 @@
 import ReactModal from "react-modal";
 import css from "./Modal.module.css";
 import { GiCrownedSkull } from "react-icons/gi";
+
 const customStyles = {
   content: {
+    border: "none",
+    backgroundColor: "transparent",
     top: "50%",
     left: "50%",
     right: "auto",
@@ -16,10 +19,17 @@ const customStyles = {
 
 ReactModal.setAppElement("#root");
 
-const Modal = ({ isOpen, closeModal, children }) => {
+const Modal = ({ isOpen, closeModal, children, onCopy }) => {
   const handleCopyText = () => {
-    navigator.clipboard.writeText(children);
-    closeModal();
+    navigator.clipboard
+      .writeText(children)
+      .then(() => {
+        onCopy();
+        closeModal();
+      })
+      .catch(() => {
+        console.error("Помилка при копіюванні");
+      });
   };
 
   return (

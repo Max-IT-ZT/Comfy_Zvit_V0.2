@@ -18,7 +18,7 @@
 }
 
 .input:focus {
-  border-color: #7c7c7cad;
+  border-color: orange;
 }
 
 .label {

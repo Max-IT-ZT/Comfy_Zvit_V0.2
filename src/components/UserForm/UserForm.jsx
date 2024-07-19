@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import css from "./UserForm.module.css";
 import Modal from "../Modal/Modal";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function UserForm({ plan, onSumItChange }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -54,6 +55,10 @@ export default function UserForm({ plan, onSumItChange }) {
 
   const closeModal = () => {
     setModalOpen(false);
+  };
+
+  const handleCopySuccess = () => {
+    toast.success("Повідомлення скопійовано!");
   };
 
   const handleSumItChange = (e, handleChange) => {
@@ -205,9 +210,14 @@ export default function UserForm({ plan, onSumItChange }) {
         )}
       </Formik>
 
-      <Modal isOpen={modalOpen} closeModal={closeModal}>
+      <Modal
+        isOpen={modalOpen}
+        closeModal={closeModal}
+        onCopy={handleCopySuccess}
+      >
         {modalContent}
       </Modal>
+      <Toaster reverseOrder={false} />
     </>
   );
 }
