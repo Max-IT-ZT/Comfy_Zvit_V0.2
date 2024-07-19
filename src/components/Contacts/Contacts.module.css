@@ -1,0 +1,60 @@
+.contacts {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contacts h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+}
+
+.contacts ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contacts li {
+  margin-bottom: 20px;
+  font-size: 18px;
+  border: 1px solid orange;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.contacts a {
+  display: flex;
+  flex-direction: column;
+  color: #464646;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-weight: 500;
+}
+
+.contacts a:hover {
+  color: #0056b3;
+}
+
+.hiddenPhone {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  background-color: rgb(255, 135, 135);
+  color: white;
+  font-weight: 600;
+  border-radius: 30px;
+  padding: 5px 5px;
+  /* Hide the phone number but still allow dialing */
+}
+.icon {
+  width: 30px;
+  height: auto;
+}

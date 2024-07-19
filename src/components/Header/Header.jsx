@@ -5,6 +5,7 @@ export default function Header({
   toggleComponent,
   resetComponent,
   showGalleryComponent,
+  showContactsComponent,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,7 +37,9 @@ export default function Header({
         <button onClick={() => handleMenuClick(showGalleryComponent)}>
           Галерея
         </button>
-
+        <button onClick={() => handleMenuClick(showContactsComponent)}>
+          Контакти
+        </button>
         <a
           href="https://elearning.comfy.ua/wallet"
           target="_blank"
@@ -44,10 +47,9 @@ export default function Header({
         >
           <button> Мій Гаманець</button>
         </a>
-
         <a
           href="https://docs.google.com/spreadsheets/d/1Wxgk7YfdiOrgqhAZ-FJKSfee88IIFO-yeGUFCF_af6U/edit#gid=0&range=A2:AG8"
-          target="_blank "
+          target="_blank"
           rel="noreferrer"
         >
           <button>Графік на місяць</button>
