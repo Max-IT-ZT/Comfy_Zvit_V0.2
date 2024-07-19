@@ -15,10 +15,14 @@
   border: 1px solid #ccc;
   border-radius: 20px;
   transition: border-color 0.3s;
+  outline: none; /* Знімає блакитне обрамлення */
+  box-shadow: none; /* Знімає блакитну тінь */
 }
 
 .input:focus {
   border: 1px solid orange;
+  outline: none; /* Знімає блакитне обрамлення */
+  box-shadow: none; /* Знімає блакитну тінь */
 }
 
 .label {
