@@ -36,13 +36,13 @@ export default function UserForm({ plan, onSumItChange }) {
       if (percentageHs) {
         modalMessage += `\nЧастка: ${percentageHs}%`;
       }
-      if (phone) {
+      if (phone || phone === 0) {
         modalMessage += `\n📱 - ${phone}шт.`;
       }
-      if (pc) {
+      if (pc || pc === 0) {
         modalMessage += `\n💻 - ${pc}шт.`;
       }
-      if (tv) {
+      if (tv || tv === 0) {
         modalMessage += `\n📺 - ${tv}шт.`;
       }
 
@@ -95,7 +95,7 @@ export default function UserForm({ plan, onSumItChange }) {
               />
               <label
                 htmlFor="sumIt"
-                className={`${css.label} ${values.sumIt && css.filled}`}
+                className={`${css.label} ${values.sumIt !== "" && css.filled}`}
               >
                 Сума ІТ
               </label>
@@ -109,10 +109,13 @@ export default function UserForm({ plan, onSumItChange }) {
                 id="percentageIt"
                 className={css.input}
                 value={values.percentageIt}
+                onChange={handleChange}
               />
               <label
                 htmlFor="percentageIt"
-                className={`${css.label} ${values.percentageIt && css.filled}`}
+                className={`${css.label} ${
+                  values.percentageIt !== "" && css.filled
+                }`}
               >
                 Частка ІТ
               </label>
@@ -126,10 +129,11 @@ export default function UserForm({ plan, onSumItChange }) {
                 id="sumHs"
                 className={css.input}
                 value={values.sumHs}
+                onChange={handleChange}
               />
               <label
                 htmlFor="sumHs"
-                className={`${css.label} ${values.sumHs && css.filled}`}
+                className={`${css.label} ${values.sumHs !== "" && css.filled}`}
               >
                 Сума ХС
               </label>
@@ -143,10 +147,13 @@ export default function UserForm({ plan, onSumItChange }) {
                 id="percentageHs"
                 className={css.input}
                 value={values.percentageHs}
+                onChange={handleChange}
               />
               <label
                 htmlFor="percentageHs"
-                className={`${css.label} ${values.percentageHs && css.filled}`}
+                className={`${css.label} ${
+                  values.percentageHs !== "" && css.filled
+                }`}
               >
                 Частка ХС
               </label>
@@ -160,10 +167,11 @@ export default function UserForm({ plan, onSumItChange }) {
                 id="phone"
                 className={css.input}
                 value={values.phone}
+                onChange={handleChange}
               />
               <label
                 htmlFor="phone"
-                className={`${css.label} ${values.phone && css.filled}`}
+                className={`${css.label} ${values.phone !== "" && css.filled}`}
               >
                 Кількість Смартфонів
               </label>
@@ -177,10 +185,11 @@ export default function UserForm({ plan, onSumItChange }) {
                 id="pc"
                 className={css.input}
                 value={values.pc}
+                onChange={handleChange}
               />
               <label
                 htmlFor="pc"
-                className={`${css.label} ${values.pc && css.filled}`}
+                className={`${css.label} ${values.pc !== "" && css.filled}`}
               >
                 Кількість Ноутбуків
               </label>
@@ -194,10 +203,11 @@ export default function UserForm({ plan, onSumItChange }) {
                 id="tv"
                 className={css.input}
                 value={values.tv}
+                onChange={handleChange}
               />
               <label
                 htmlFor="tv"
-                className={`${css.label} ${values.tv && css.filled}`}
+                className={`${css.label} ${values.tv !== "" && css.filled}`}
               >
                 Кількість Телевізорів
               </label>
