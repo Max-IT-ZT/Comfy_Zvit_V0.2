@@ -36,12 +36,35 @@ const Contacts = () => {
           </a>
         </li>
         <li>
+          <a href="tel:0800300780">
+            СПП <span>0 800 300 780</span>
+          </a>
+        </li>
+        <li>
           <a
             href="https://t.me/sweet_tv_techsupport_bot"
             target="_blank"
             rel="noopener noreferrer"
           >
             Чат-Бот SweetTv <span>@sweet_tv_techsupport_bot</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://t.me/ComfyImageUploaderBot"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Чат-Бот ComfyImage <span>@ComfyImageUploaderBot</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://ti.generalse.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Сертифікати Breeze
           </a>
         </li>
         <li className={css.hiddenPhone}>
