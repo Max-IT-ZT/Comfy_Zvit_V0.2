@@ -15,7 +15,8 @@ export default function UserForm({ plan, onSumItChange }) {
   }, []);
 
   const calculatePercentage = (actual, plan) => {
-    return ((actual / plan) * 100 - 100).toFixed(1);
+    const percentage = ((actual / plan) * 100 - 100).toFixed(1);
+    return percentage > 0 ? `+${percentage}` : percentage;
   };
 
   const handleSubmitForm = (values, actions) => {

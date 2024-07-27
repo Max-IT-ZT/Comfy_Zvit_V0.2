@@ -13,7 +13,6 @@ export default function Salary({ itSum }) {
 
   const handleCoefficientChange = (e) => {
     const value = e.target.value;
-    // Заміняємо кому на крапку, якщо необхідно
     const normalizedValue = value.replace(",", ".");
     setCoefficient(normalizedValue);
   };
