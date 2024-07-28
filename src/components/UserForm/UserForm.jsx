@@ -19,6 +19,16 @@ export default function UserForm({ plan, onSumItChange }) {
     return percentage > 0 ? `+${percentage}` : percentage;
   };
 
+  const showToast = (remainingAmount, planExceeded) => {
+    if (planExceeded) {
+      toast.success(
+        `Ти крутий, план перевиконаний на ${Math.abs(remainingAmount)} грн!`
+      );
+    } else {
+      toast(`До закриття плану залишилось ${remainingAmount} грн.`);
+    }
+  };
+
   const handleSubmitForm = (values, actions) => {
     const { sumIt, sumHs, percentageIt, percentageHs, phone, tv, pc } = values;
 
@@ -65,7 +75,30 @@ export default function UserForm({ plan, onSumItChange }) {
   const handleSumItChange = (e, handleChange) => {
     e.target.value = e.target.value.replace(".", ",");
     handleChange(e);
-    onSumItChange(e.target.value);
+    if (onSumItChange) {
+      onSumItChange(e.target.value);
+    }
+  };
+
+  const handleSumHsChange = (e, handleChange) => {
+    handleChange(e);
+  };
+
+  const handleBlurIt = (e) => {
+    const todayPlan = plan.find((item) => item.day === today);
+    if (todayPlan) {
+      const remainingAmount =
+        todayPlan.it - parseFloat(e.target.value.replace(",", "."));
+      showToast(remainingAmount, remainingAmount < 0);
+    }
+  };
+
+  const handleBlurHs = (e) => {
+    const todayPlan = plan.find((item) => item.day === today);
+    if (todayPlan) {
+      const remainingAmount = todayPlan.hs - parseFloat(e.target.value);
+      showToast(remainingAmount, remainingAmount < 0);
+    }
   };
 
   return (
@@ -92,6 +125,7 @@ export default function UserForm({ plan, onSumItChange }) {
                 id="sumIt"
                 className={css.input}
                 onChange={(e) => handleSumItChange(e, handleChange)}
+                onBlur={handleBlurIt}
                 value={values.sumIt}
               />
               <label
@@ -130,7 +164,8 @@ export default function UserForm({ plan, onSumItChange }) {
                 id="sumHs"
                 className={css.input}
                 value={values.sumHs}
-                onChange={handleChange}
+                onChange={(e) => handleSumHsChange(e, handleChange)}
+                onBlur={handleBlurHs}
               />
               <label
                 htmlFor="sumHs"
