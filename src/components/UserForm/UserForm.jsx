@@ -3,6 +3,8 @@ import { Formik, Form, Field } from "formik";
 import css from "./UserForm.module.css";
 import Modal from "../Modal/Modal";
 import toast, { Toaster } from "react-hot-toast";
+import { GiRobber } from "react-icons/gi";
+import { GiMouthWatering } from "react-icons/gi";
 
 export default function UserForm({ plan, onSumItChange }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -17,16 +19,6 @@ export default function UserForm({ plan, onSumItChange }) {
   const calculatePercentage = (actual, plan) => {
     const percentage = ((actual / plan) * 100 - 100).toFixed(1);
     return percentage > 0 ? `+${percentage}` : percentage;
-  };
-
-  const showToast = (remainingAmount, planExceeded) => {
-    if (planExceeded) {
-      toast.success(
-        `Ти крутий, план перевиконаний на ${Math.abs(remainingAmount)} грн!`
-      );
-    } else {
-      toast(`До закриття плану залишилось ${remainingAmount} грн.`);
-    }
   };
 
   const handleSubmitForm = (values, actions) => {
@@ -56,6 +48,61 @@ export default function UserForm({ plan, onSumItChange }) {
       if (tv || tv === 0) {
         modalMessage += `\n📺 - ${tv}шт.`;
       }
+      const sumItPlanCompleted = sumIt - todayPlan.it;
+      const sumHsPlanCompleted = sumHs - todayPlan.hs;
+
+      if (sumHs > 0) {
+        {
+          sumHsPlanCompleted < 0
+            ? toast(`До виконання плану ХС ще ${-sumHsPlanCompleted}грн.`, {
+                duration: 6000,
+                icon: <GiRobber color="gold" />,
+                style: {
+                  borderRadius: "10px",
+                  background: "#333",
+                  color: "#fff",
+                },
+              })
+            : toast.success(
+                `План ХС перевиконаний на ${sumHsPlanCompleted}грн.`,
+                {
+                  duration: 6000,
+                  icon: <GiMouthWatering color="red" />,
+                  style: {
+                    borderRadius: "10px",
+                    background: "#333",
+                    color: "#fff",
+                  },
+                }
+              );
+        }
+      }
+      if (sumIt > 0) {
+        {
+          sumItPlanCompleted < 0
+            ? toast(`До виконання плану ІТ ще ${-sumItPlanCompleted}грн.`, {
+                duration: 6000,
+                icon: <GiRobber color="gold" />,
+                style: {
+                  borderRadius: "10px",
+                  background: "#333",
+                  color: "#fff",
+                },
+              })
+            : toast.success(
+                `План ІТ перевиконаний на ${sumItPlanCompleted}грн.`,
+                {
+                  duration: 6000,
+                  icon: <GiMouthWatering color="red" />,
+                  style: {
+                    borderRadius: "10px",
+                    background: "#333",
+                    color: "#fff",
+                  },
+                }
+              );
+        }
+      }
 
       setModalContent(modalMessage);
       setModalOpen(true);
@@ -77,27 +124,6 @@ export default function UserForm({ plan, onSumItChange }) {
     handleChange(e);
     if (onSumItChange) {
       onSumItChange(e.target.value);
-    }
-  };
-
-  const handleSumHsChange = (e, handleChange) => {
-    handleChange(e);
-  };
-
-  const handleBlurIt = (e) => {
-    const todayPlan = plan.find((item) => item.day === today);
-    if (todayPlan) {
-      const remainingAmount =
-        todayPlan.it - parseFloat(e.target.value.replace(",", "."));
-      showToast(remainingAmount, remainingAmount < 0);
-    }
-  };
-
-  const handleBlurHs = (e) => {
-    const todayPlan = plan.find((item) => item.day === today);
-    if (todayPlan) {
-      const remainingAmount = todayPlan.hs - parseFloat(e.target.value);
-      showToast(remainingAmount, remainingAmount < 0);
     }
   };
 
@@ -125,7 +151,6 @@ export default function UserForm({ plan, onSumItChange }) {
                 id="sumIt"
                 className={css.input}
                 onChange={(e) => handleSumItChange(e, handleChange)}
-                onBlur={handleBlurIt}
                 value={values.sumIt}
               />
               <label
@@ -164,8 +189,7 @@ export default function UserForm({ plan, onSumItChange }) {
                 id="sumHs"
                 className={css.input}
                 value={values.sumHs}
-                onChange={(e) => handleSumHsChange(e, handleChange)}
-                onBlur={handleBlurHs}
+                onChange={handleChange}
               />
               <label
                 htmlFor="sumHs"
