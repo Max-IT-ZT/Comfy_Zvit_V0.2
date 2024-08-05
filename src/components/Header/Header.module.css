@@ -9,15 +9,18 @@
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
   font-family: "Arial", sans-serif; /* Use a bold sans-serif font */
   font-size: 20px; /* Increase the font size */
   font-weight: bold; /* Make the text bold */
   color: #fff; /* White text color */
   background-color: #00a859; /* Green background color similar to Comfy's logo */
-  padding: 0.1rem 1rem; /* Add padding for spacing */
+  padding: 3px 5px 3px 7px; /* Add padding for spacing */
   border-radius: 4.25rem; /* Slightly rounded corners */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  display: inline-block; /* Inline-block display */
   text-transform: uppercase; /* Uppercase text */
 }
 
@@ -91,4 +94,9 @@
 
 .nav button:hover {
   color: #ddd;
+}
+.linkBtnIcon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

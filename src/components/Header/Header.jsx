@@ -1,4 +1,11 @@
 import { useState } from "react";
+import { FaCircle } from "react-icons/fa";
+import { FaCalendarAlt } from "react-icons/fa";
+import { FaWallet } from "react-icons/fa";
+import { RiContactsBook3Fill } from "react-icons/ri";
+import { GrGallery } from "react-icons/gr";
+import { TbReportSearch } from "react-icons/tb";
+import { RiLayoutHorizontalFill } from "react-icons/ri";
 import css from "./Header.module.css";
 
 export default function Header({
@@ -20,7 +27,9 @@ export default function Header({
 
   return (
     <header className={css.header}>
-      <div className={css.logo}>Comfy</div>
+      <div className={css.logo}>
+        Comfy <FaCircle color="orange" />
+      </div>
       <div
         className={`${css.burger} ${isOpen ? css.open : ""}`}
         onClick={handleToggle}
@@ -30,29 +39,47 @@ export default function Header({
         <span></span>
       </div>
       <nav className={`${css.nav} ${isOpen ? css.show : ""}`}>
-        <button onClick={() => handleMenuClick(toggleComponent)}>
-          Заповнити план
+        <button
+          className={css.linkBtnIcon}
+          onClick={() => handleMenuClick(toggleComponent)}
+        >
+          <RiLayoutHorizontalFill color="red" /> Заповнити план
         </button>
-        <button onClick={() => handleMenuClick(resetComponent)}>Звіт</button>
-        <button onClick={() => handleMenuClick(showGalleryComponent)}>
-          Галерея
+        <button
+          className={css.linkBtnIcon}
+          onClick={() => handleMenuClick(resetComponent)}
+        >
+          <TbReportSearch color="chartreuse" /> Звіт
         </button>
-        <button onClick={() => handleMenuClick(showContactsComponent)}>
-          Контакти
+        <button
+          className={css.linkBtnIcon}
+          onClick={() => handleMenuClick(showGalleryComponent)}
+        >
+          <GrGallery color="burlywood" /> Галерея
+        </button>
+        <button
+          className={css.linkBtnIcon}
+          onClick={() => handleMenuClick(showContactsComponent)}
+        >
+          <RiContactsBook3Fill color="violet" /> Контакти
         </button>
         <a
           href="https://elearning.comfy.ua/wallet"
           target="_blank"
           rel="noreferrer"
         >
-          <button> Мій Гаманець</button>
+          <button className={css.linkBtnIcon}>
+            <FaWallet color="gold" /> Мій Гаманець
+          </button>
         </a>
         <a
           href="https://docs.google.com/spreadsheets/d/1Wxgk7YfdiOrgqhAZ-FJKSfee88IIFO-yeGUFCF_af6U/edit#gid=0&range=A2:AG8"
           target="_blank"
           rel="noreferrer"
         >
-          <button>Графік на місяць</button>
+          <button className={css.linkBtnIcon}>
+            <FaCalendarAlt color="aqua" /> Графік на місяць
+          </button>
         </a>
       </nav>
     </header>
