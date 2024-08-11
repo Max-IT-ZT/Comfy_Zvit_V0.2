@@ -3,22 +3,27 @@
   flex-direction: column;
   align-items: center;
   padding: 5px 20px;
-  border: 1px solid #ccc;
   border-radius: 20px;
-  margin: 5px 0 15px 0;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 300px;
-  background-color: silver;
+  margin: 10px auto;
+  max-width: 320px;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  transition: all 0.3s ease;
 }
+
 .label {
-  font-size: 12px;
-  text-align: center;
-}
-.salaryHeader {
   font-size: 14px;
+  text-align: center;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.salaryHeader {
+  font-size: 16px;
   font-weight: bold;
-  margin-bottom: 10px;
+  color: orange;
+  margin-bottom: 5px;
 }
 
 .editContainer {
@@ -27,50 +32,62 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .salaryInput {
-  padding: 3px 50px;
-  border: 1px solid #ccc;
+  padding: 5px;
+  border: 1px solid rgba(255, 165, 0, 0.6);
   border-radius: 20px;
   width: 100px;
   text-align: center;
-  transition: all 0.2s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: rgba(255, 165, 0, 0.4) 0px 2px 8px,
+    rgba(255, 165, 0, 0.3) 0px 7px 20px -3px, rgba(255, 165, 0, 0.2) 0px -3px 0px inset;
 }
 
 .salaryInput:focus {
-  border-color: #4caf50;
-  outline: none;
-}
-
-.salaryInput:focus::placeholder {
-  position: absolute;
-  top: -20px;
-  left: 10px;
-  font-size: 12px;
-  color: #4caf50;
+  border-color: #ff4500;
+  box-shadow: rgba(255, 69, 0, 0.4) 0px 2px 8px,
+    rgba(255, 69, 0, 0.3) 0px 7px 20px -3px, rgba(255, 69, 0, 0.2) 0px -3px 0px inset;
 }
 
 .salaryRow {
   width: 100%;
   display: flex;
+  gap: 10px;
   justify-content: space-around;
-  margin: 4px 0;
+  margin: 5px 0px;
+
 }
+
 
 .salaryRow span {
   font-size: 14px;
   font-weight: 600;
+  color: #333;
 }
+
 .item {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1px solid rgba(255, 165, 0, 0.6);
   border-radius: 10px;
-  background-color: #81f585d7;
-  padding: 2px 5px;
+  background-color: rgba(255, 165, 0, 0.2);
+  padding: 5px;
   min-width: 50px;
   align-items: center;
   justify-content: center;
+  color: #333;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.item span {
+  color: rgba(251, 251, 251, 0.914);
+}
+.item:hover {
+  background-color: rgba(255, 165, 0, 0.4);
+  transform: translateY(-2px);
 }

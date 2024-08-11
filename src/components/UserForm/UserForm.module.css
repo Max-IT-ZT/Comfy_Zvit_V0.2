@@ -3,59 +3,81 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  max-width: 70%;
+  border-radius: 20px;
+  padding: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  backdrop-filter: blur(20px);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .inputWrapper {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 20px; 
 }
 
 .input {
-  padding: 7px 20px;
+  padding: 10px 20px;
   border: 1px solid #ccc;
   border-radius: 20px;
-  transition: border-color 0.3s;
-  outline: none; /* Знімає блакитне обрамлення */
-  box-shadow: none; /* Знімає блакитну тінь */
+  transition: border-color 0.3s, box-shadow 0.3s; 
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px,
+    rgba(0, 0, 0, 0.2) 0px 7px 13px -3px, rgba(0, 0, 0, 0.1) 0px -3px 0px inset;
 }
 
 .input:focus {
   border: 1px solid orange;
-  outline: none; /* Знімає блакитне обрамлення */
-  box-shadow: none; /* Знімає блакитну тінь */
+  box-shadow: rgba(255, 165, 0, 0.4) 0px 2px 8px,
+    rgba(255, 165, 0, 0.3) 0px 7px 20px -3px, rgba(255, 165, 0, 0.2) 0px -3px 0px inset;
 }
 
 .label {
   position: absolute;
-  top: 7px;
-  left: 10px;
+  top: 10px;
+  left: 20px;
   padding: 0 10px;
-  background: white;
+  background: rgba(255, 255, 255, 0.8);
   color: #999;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   pointer-events: none;
-  font-size: 13px;
-  border: 10px;
+  font-size: 14px;
+  border-radius: 10px;
 }
 
 .input:focus + .label,
 .filled {
-  top: -8px;
-  left: 10px;
-  color: #000000;
+  top: -6px;
+  left: 20px;
+  color: orange;
   font-size: 12px;
-  background-color: orange;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
 }
 
 .formBtn {
-  border: 1px solid black;
-  border-radius: 20px;
-  background-color: aliceblue;
-  color: black;
-  padding: 5px 10px;
-  font-size: 15px;
+  border: 1px solid orange;
+  border-radius: 30px; 
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
   font-weight: bold;
-  width: 190px;
-  margin-bottom: 50px;
+  width: 200px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: rgba(255, 165, 0, 0.4) 0px 2px 4px,
+    rgba(255, 165, 0, 0.3) 0px 7px 13px -3px, rgba(255, 165, 0, 0.2) 0px -3px 0px inset;
+}
+
+.formBtn:hover {
+  background-color: #ff4500; 
+  transform: translateY(-2px); 
+}
+
+.formBtn:active {
+  background-color: #e63e00;
+  transform: translateY(0);
 }

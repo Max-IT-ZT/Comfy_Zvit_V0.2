@@ -1,5 +1,9 @@
 .container {
   margin: 20px;
+  padding: 20px;
+  background-color: rgba(51, 51, 51, 0.8); /* Напівпрозорий темний фон для контрасту з фоновою картинкою */
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px, rgba(0, 0, 0, 0.3) 0px 12px 24px -6px, rgba(0, 0, 0, 0.2) 0px -6px 0px inset;
 }
 
 .planList {
@@ -12,37 +16,41 @@
 
 .header {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   font-weight: bold;
-  background-color: #f2f2f2;
+  background-color: rgba(33, 251, 150, 0.693);; /* Темний зелений із прозорістю для поєднання з фоном */
+  color: #fff;
+  padding: 10px 20px;
   border-bottom: 2px solid #ddd;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
 }
 
 .planItem {
   display: flex;
-  border-bottom: 1px solid #ddd;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.1); /* Прозорий білий для легкого відтінку */
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease;
 }
 
 .planItem:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: rgba(255, 255, 255, 0.2); /* Злегка світліший для чергування рядків */
+}
+
+.planItem:hover {
+  background-color: rgba(33, 251, 150, 0.693);; /* Темний зелений при наведенні для виділення */
 }
 
 .itemSpan {
   flex: 1;
   padding: 10px;
   text-align: center;
-}
-
-/* .header,
-.planItem {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-} */
-
-.header {
-  font-weight: bold;
+  font-size: 14px;
 }
 
 .form {
@@ -52,17 +60,45 @@
   justify-content: center;
   gap: 20px;
   margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(51, 51, 51, 0.8); /* Такий самий фон, як у контейнера */
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px, rgba(0, 0, 0, 0.3) 0px 12px 24px -6px, rgba(0, 0, 0, 0.2) 0px -6px 0px inset;
 }
+
 .input {
   padding: 10px;
+  width: 100%;
+  max-width: 300px;
   border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+.input:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: rgba(255, 165, 0, 0.4) 0px 2px 4px,
+    rgba(255, 165, 0, 0.3) 0px 7px 13px -3px, rgba(255, 165, 0, 0.2) 0px -3px 0px inset;
+}
+
 .formBtn {
-  border: 1px solid black;
-  border-radius: 10px;
-  background-color: aliceblue;
-  color: black;
-  padding: 10px;
-  font-size: 15px;
+  border: 1px solid orange;
+  border-radius: 30px; 
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
   font-weight: bold;
+  width: 200px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: rgba(255, 165, 0, 0.4) 0px 2px 4px,
+    rgba(255, 165, 0, 0.3) 0px 7px 13px -3px, rgba(255, 165, 0, 0.2) 0px -3px 0px inset;
+}
+
+.formBtn:hover {
+  background-color: #ff4500; 
+  transform: translateY(-2px); 
 }

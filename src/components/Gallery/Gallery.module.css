@@ -1,22 +1,40 @@
-/* src/components/Gallery/Gallery.module.css */
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  gap: 15px; /* Збільшений відступ між зображеннями для більш повітряного вигляду */
+  padding: 20px; /* Доданий внутрішній відступ */
+  justify-content: center;
+  background-color: rgba(51, 51, 51, 0.8); /* Напівпрозорий темний фон */
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px, rgba(0, 0, 0, 0.3) 0px 12px 24px -6px, rgba(0, 0, 0, 0.2) 0px -6px 0px inset;
+  margin: 20px 10px;
 }
 
 .imageContainer {
-  flex: 1 1 300px; /* Адаптивне зображення */
+  flex: 1 1 250px; /* Зменшений розмір для кращої адаптивності */
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px, rgba(0, 0, 0, 0.3) 0px 12px 24px -6px, rgba(0, 0, 0, 0.2) 0px -6px 0px inset;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.imageContainer:hover {
+  transform: scale(1.05); /* Легкий збільшення при наведенні */
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 8px 16px, rgba(0, 0, 0, 0.4) 0px 16px 32px -6px, rgba(0, 0, 0, 0.3) 0px -12px 0px inset;
 }
 
 .image {
   width: 100%;
   height: auto;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 15px;
 }
+
 .title {
+  width: 100%;
   text-align: center;
+  color: #ffffff; /* Білий текст для гармонії з фоном */
+  font-size: 1.2rem;
+  margin-top: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }

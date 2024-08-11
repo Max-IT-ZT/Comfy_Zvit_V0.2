@@ -1,3 +1,13 @@
+body{
+  background-image: url(/public/bc2.jpg);
+background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  max-width: 100%;
+
+  min-height: 100vh;
+}
+
 h1,
 h2,
 h3,

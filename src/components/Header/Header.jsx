@@ -28,7 +28,7 @@ export default function Header({
   return (
     <header className={css.header}>
       <div className={css.logo}>
-        Comfy <FaCircle color="orange" />
+        Comfy <FaCircle color="orange" className={css.icon} />
       </div>
       <div
         className={`${css.burger} ${isOpen ? css.open : ""}`}

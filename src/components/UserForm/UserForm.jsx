@@ -287,7 +287,7 @@ export default function UserForm({ plan, onSumItChange }) {
       >
         {modalContent}
       </Modal>
-      <Toaster reverseOrder={false} />
+      <Toaster reverseOrder={false} position="top-center" />
     </>
   );
 }
