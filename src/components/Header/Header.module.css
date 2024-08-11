@@ -2,37 +2,63 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #333;
+  padding: 15px 10px;
+  background-color: #333333b5;
   color: #fff;
   margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  transition: background-color 0.3s ease;
+  z-index: 10;
 }
 
 .logo {
   display: flex;
   align-items: center;
-
   gap: 5px;
-  font-family: "Arial", sans-serif; /* Use a bold sans-serif font */
-  font-size: 20px; /* Increase the font size */
-  font-weight: bold; /* Make the text bold */
-  color: #fff; /* White text color */
-  background-color: #00a859; /* Green background color similar to Comfy's logo */
-  padding: 3px 5px 3px 7px; /* Add padding for spacing */
-  border-radius: 4.25rem; /* Slightly rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  text-transform: uppercase; /* Uppercase text */
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #00a859;
+  padding: 5px 10px;
+  border-radius: 50px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.logo .icon {
+  font-size: 15px;
+  color: #ff8f18;
+  box-shadow: 0 0 25px #ff8f18, 0 0 10px #ff8f18, inset 0 0 15px #ff8f18;
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo:hover .icon {
+  transform: rotate(15deg);
 }
 
 .burger {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
-  z-index: 1001;
-  margin-right: 10px;
+  z-index: 10001;
+  margin-right: 20px;
+  transition: transform 0.3s ease;
+}
+
+.burger:hover {
+  transform: scale(1.1);
 }
 
 .burger span {
@@ -44,7 +70,7 @@
 }
 
 .burger.open span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(10px) rotate(45deg);
 }
 
 .burger.open span:nth-child(2) {
@@ -52,41 +78,45 @@
 }
 
 .burger.open span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-10px) rotate(-45deg);
 }
 
 .nav {
   position: fixed;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  padding-top: 80px;
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-  z-index: 1000;
+    top: 50%;
+    right: 50%;
+    height: 60%;
+    width: 90%;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    /* background: rgba(0, 0, 0, 0.9); */
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 80px;
+    transform: translate(160%, -160%);
+    transition: transform 0.6s ease;
+    z-index: 10000;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
+
 .nav.show {
-  transform: translateX(0);
+  transform: translate(50%, -60%);
 }
 
 .nav button {
   background: none;
-  background-color: #343131d4;
-  border: 1px solid #fff;
+  background-color: #34313199;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 30px;
   min-width: 200px;
   font-size: 18px;
   padding: 15px;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, background-color 0.3s ease;
   margin: 10px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -94,9 +124,12 @@
 
 .nav button:hover {
   color: #ddd;
+  background-color: #444;
 }
+
 .linkBtnIcon {
   display: flex;
   align-items: center;
   gap: 10px;
+  font-size: 18px;
 }

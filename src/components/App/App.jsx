@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import PlanForm from "../Plan/PlanForm";
-import css from "./App.module.css";
 import { db, ref, set, get, child } from "../../firebase";
 import UserForm from "../UserForm/UserForm";
 import Header from "../Header/Header";
 import Salary from "../Salary/Salary";
 import Gallery from "../Gallery/Gallery";
-import Contacts from "../Contacts/Contacts"; // Import the Contacts component
+import Contacts from "../Contacts/Contacts";
 
 export default function App() {
   const [day, setDay] = useState(1);
@@ -76,7 +75,7 @@ export default function App() {
   };
 
   return (
-    <div className={css.container}>
+    <>
       <Header
         toggleComponent={toggleComponent}
         resetComponent={resetComponent}
@@ -95,6 +94,6 @@ export default function App() {
           <UserForm plan={plan} onSumItChange={setItSum} />
         </>
       )}
-    </div>
+    </>
   );
 }

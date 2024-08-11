@@ -1,17 +1,18 @@
 .contacts {
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 0 auto;
+  padding: 30px;
+  background-color: rgba(51, 51, 51, 0.8); /* Напівпрозорий темний фон для гармонії з іншими компонентами */
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px, rgba(0, 0, 0, 0.3) 0px 12px 24px -6px, rgba(0, 0, 0, 0.2) 0px -6px 0px inset;
+  max-width: 700px;
+  margin: 20px auto;
 }
 
 .contacts h2 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #ffffff; /* Білий текст для контрасту з темним фоном */
   text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .contacts ul {
@@ -20,24 +21,32 @@
 }
 
 .contacts li {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  padding: 15px;
   font-size: 18px;
-  border: 1px solid orange;
-  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1); /* Легкий прозорий білий фон для виділення */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
   text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.contacts li:hover {
+  background-color: rgba(0, 168, 89, 0.8); /* Зелений фон при наведенні */
+  color: #ffffff; /* Білий текст при наведенні */
 }
 
 .contacts a {
   display: flex;
   flex-direction: column;
-  color: #464646;
+  color: #ffffff; /* Білий текст для кращої читабельності */
   text-decoration: none;
   transition: color 0.3s;
   font-weight: 500;
 }
 
 .contacts a:hover {
-  color: #0056b3;
+  color: #00cc66; /* Світло-зелений текст при наведенні */
 }
 
 .hiddenPhone {
@@ -47,13 +56,14 @@
   align-items: center;
   gap: 10px;
   font-size: 16px;
-  background-color: rgb(255, 135, 135);
+  background-color: rgb(255, 135, 135); /* Червоний фон для важливих елементів */
   color: white;
   font-weight: 600;
   border-radius: 30px;
-  padding: 5px 5px;
-  /* Hide the phone number but still allow dialing */
+  padding: 5px 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
+
 .icon {
   width: 30px;
   height: auto;
