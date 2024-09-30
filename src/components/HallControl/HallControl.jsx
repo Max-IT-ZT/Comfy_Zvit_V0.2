@@ -38,7 +38,33 @@ export default function HallControl() {
     setDeviceCounts(updatedCounts);
     saveData(updatedCounts, selectedUser);
 
-    toast.success(`${isAdding ? "Додано" : "Видалено"} ${device}`);
+    const deviceName =
+      device === "smartphones"
+        ? "Смартфон"
+        : device === "laptops"
+        ? "Ноутбук"
+        : device === "tablets"
+        ? "Планшет"
+        : device === "tvs"
+        ? "Телевізор"
+        : "";
+
+    const serviceName =
+      service === "services"
+        ? "Послуга"
+        : service === "laptopServices"
+        ? "Послуга для ноутбука"
+        : service === "tabletServices"
+        ? "Послуга для планшета"
+        : service === "tvServices"
+        ? "Послуга для телевізора"
+        : "";
+
+    const message = `${isAdding ? "Додано" : "Видалено"} ${deviceName} ${
+      service ? "і " + serviceName : ""
+    }`;
+
+    toast.success(message);
   };
 
   const resetStatistics = () => {
