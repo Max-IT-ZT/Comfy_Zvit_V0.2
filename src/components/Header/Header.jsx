@@ -13,6 +13,7 @@ export default function Header({
   resetComponent,
   showGalleryComponent,
   showContactsComponent,
+  showHallControlComponent,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -51,6 +52,13 @@ export default function Header({
         >
           <TbReportSearch color="chartreuse" /> Звіт
         </button>
+        <button
+          className={css.linkBtnIcon}
+          onClick={() => handleMenuClick(showHallControlComponent)}
+        >
+          <RiLayoutHorizontalFill color="green" /> Контроль залу
+        </button>
+
         <button
           className={css.linkBtnIcon}
           onClick={() => handleMenuClick(showGalleryComponent)}

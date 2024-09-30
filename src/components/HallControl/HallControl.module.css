@@ -1,0 +1,89 @@
+.hallControl {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 24px;
+}
+
+.label {
+  margin-top: 10px;
+}
+
+.select {
+  border-radius: 10px;
+  margin-bottom: 20px;
+  min-width: 100px;
+  text-align: center;
+  margin-top: 10px;
+}
+.deviceAllGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
+}
+.deviceGroup {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin: 5px 0;
+  padding: 2px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.groupTitle {
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.buttonGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Дві колонки */
+  gap: 5px; /* Відстань між кнопками */
+}
+
+.deviceButtonPositive {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.deviceButtonPositivePlus {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.deviceButtonNegative {
+  background-color: #f44336; /* Червоний колір для негативних кнопок */
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.statisticsButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #2196f3; /* Синій колір */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

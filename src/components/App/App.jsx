@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react";
-import PlanForm from "../Plan/PlanForm";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { db, ref, set, get, child } from "../../firebase";
-import UserForm from "../UserForm/UserForm";
 import Header from "../Header/Header";
 import Salary from "../Salary/Salary";
-import Gallery from "../Gallery/Gallery";
-import Contacts from "../Contacts/Contacts";
-
+const PlanForm = lazy(() => import("../Plan/PlanForm"));
+const UserForm = lazy(() => import("../UserForm/UserForm"));
+const Gallery = lazy(() => import("../Gallery/Gallery"));
+const Contacts = lazy(() => import("../Contacts/Contacts"));
+const HallControl = lazy(() => import("../HallControl/HallControl.jsx"));
 export default function App() {
   const [day, setDay] = useState(1);
   const [plan, setPlan] = useState([]);
   const [showPlanForm, setShowPlanForm] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
+  const [showHallControl, setShowHallControl] = useState(false);
   const [showContacts, setShowContacts] = useState(false);
   const [itSum, setItSum] = useState(0);
 
@@ -54,24 +55,34 @@ export default function App() {
     setShowPlanForm(true);
     setShowGallery(false);
     setShowContacts(false);
+    setShowHallControl(false);
   };
 
   const resetComponent = () => {
     setShowPlanForm(false);
     setShowGallery(false);
     setShowContacts(false);
+    setShowHallControl(false);
   };
 
   const showGalleryComponent = () => {
     setShowGallery(true);
     setShowPlanForm(false);
     setShowContacts(false);
+    setShowHallControl(false);
   };
 
   const showContactsComponent = () => {
     setShowContacts(true);
     setShowPlanForm(false);
     setShowGallery(false);
+    setShowHallControl(false);
+  };
+  const showHallControlComponent = () => {
+    setShowHallControl(true);
+    setShowPlanForm(false);
+    setShowGallery(false);
+    setShowContacts(false);
   };
 
   return (
@@ -80,20 +91,30 @@ export default function App() {
         toggleComponent={toggleComponent}
         resetComponent={resetComponent}
         showGalleryComponent={showGalleryComponent}
-        showContactsComponent={showContactsComponent} // Pass the function to show Contacts
+        showContactsComponent={showContactsComponent}
+        showHallControlComponent={showHallControlComponent}
       />
-      {showGallery ? (
-        <Gallery />
-      ) : showPlanForm ? (
-        <PlanForm newPlan={updatePlan} setDay={setDay} day={day} plan={plan} />
-      ) : showContacts ? (
-        <Contacts /> // Display Contacts component
-      ) : (
-        <>
-          <Salary itSum={itSum} />
-          <UserForm plan={plan} onSumItChange={setItSum} />
-        </>
-      )}
+      <Suspense fallback={<div>Loading...</div>}>
+        {showGallery ? (
+          <Gallery />
+        ) : showPlanForm ? (
+          <PlanForm
+            newPlan={updatePlan}
+            setDay={setDay}
+            day={day}
+            plan={plan}
+          />
+        ) : showContacts ? (
+          <Contacts />
+        ) : showHallControl ? (
+          <HallControl />
+        ) : (
+          <>
+            <Salary itSum={itSum} />
+            <UserForm plan={plan} onSumItChange={setItSum} />
+          </>
+        )}
+      </Suspense>
     </>
   );
 }
