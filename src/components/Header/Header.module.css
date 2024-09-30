@@ -86,25 +86,24 @@
   position: fixed;
   top: 50%;
   right: 50%;
-  height: 60%;
   width: 90%;
   border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #fff3;
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  padding-top: 80px;
+  padding: 50px 0px;
   transform: translate(160%, -160%);
   transition: transform 0.6s ease;
   z-index: 1000;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  box-shadow: #0006 0 2px 4px, #0000004d 0 7px 13px -3px, #0003 0 -3px inset;
 }
 
 .nav.show {
-  transform: translate(50%, -60%);
+  transform: translate(50%, -50%);
 }
 
 .nav button {
@@ -114,7 +113,7 @@
   border-radius: 30px;
   min-width: 200px;
   font-size: 18px;
-  padding: 15px;
+  padding: 5px;
   cursor: pointer;
   transition: color 0.3s ease, background-color 0.3s ease;
   margin: 10px;

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { db, ref, set } from "../../firebase";
 import StatisticsModal from "../StatisticsModal/StatisticsModal.jsx";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // імпортуємо стиль для toast
 import styles from "./HallControl.module.css";
 
 export default function HallControl() {
@@ -35,6 +37,36 @@ export default function HallControl() {
 
     setDeviceCounts(updatedCounts);
     saveData(updatedCounts, selectedUser);
+
+    toast.success(`${isAdding ? "Додано" : "Видалено"} ${device}`);
+  };
+
+  const resetStatistics = () => {
+    setDeviceCounts({
+      smartphones: 0,
+      services: 0,
+      laptops: 0,
+      laptopServices: 0,
+      tablets: 0,
+      tabletServices: 0,
+      tvs: 0,
+      tvServices: 0,
+    });
+    saveData(
+      {
+        smartphones: 0,
+        services: 0,
+        laptops: 0,
+        laptopServices: 0,
+        tablets: 0,
+        tabletServices: 0,
+        tvs: 0,
+        tvServices: 0,
+      },
+      selectedUser
+    );
+
+    toast.info("Статистику скинуто");
   };
 
   const saveData = async (data, user) => {
@@ -56,6 +88,7 @@ export default function HallControl() {
 
   return (
     <div className={styles.hallControl}>
+      <ToastContainer /> {/* Додаємо контейнер для toast */}
       <h1 className={styles.title}>Контроль залу</h1>
       <label className={styles.label}>Оберіть користувача:</label>
       <select
@@ -71,7 +104,6 @@ export default function HallControl() {
         <option value="Вова">Вова</option>
         <option value="Макс">Макс</option>
       </select>
-
       {/* Група Смартфони */}
       <div className={styles.deviceAllGroup}>
         <div className={styles.deviceGroup}>
@@ -233,14 +265,16 @@ export default function HallControl() {
           </button>
         </div>
       </div>
-
       <button
         className={styles.statisticsButton}
         onClick={handleShowStatistics}
       >
         Показати статистику
       </button>
-
+      {/* Кнопка для скидання статистики */}
+      <button className={styles.resetButton} onClick={resetStatistics}>
+        Скинути статистику
+      </button>
       {showStatistics && (
         <StatisticsModal
           deviceCounts={deviceCounts}
