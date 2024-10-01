@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { db, ref, set, onValue } from "../../firebase"; // Імпортуємо onValue для слухача
+import { db, ref, set, onValue } from "../../firebase";
 import StatisticsModal from "../StatisticsModal/StatisticsModal.jsx";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // імпортуємо стиль для toast
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./HallControl.module.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Іконки ока
 
 export default function HallControl() {
   const [selectedUser, setSelectedUser] = useState(
@@ -20,8 +21,12 @@ export default function HallControl() {
     tvServices: 0,
   });
   const [showStatistics, setShowStatistics] = useState(false);
+  const [password, setPassword] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem("isAuthenticated") === "true"
+  );
+  const [showPassword, setShowPassword] = useState(false); // Новий стан для видимості пароля
 
-  // Функція для отримання даних з Firebase при монтуванні компонента
   useEffect(() => {
     const fetchData = () => {
       const userRef = ref(db, `hallControl/${selectedUser}`);
@@ -44,9 +49,53 @@ export default function HallControl() {
     };
 
     fetchData();
-  }, [selectedUser]); // Викликаємо при зміні вибраного користувача
+  }, [selectedUser]);
+
+  const authenticateUser = async () => {
+    const passwordRef = ref(db, `passwords/${selectedUser}`);
+
+    onValue(passwordRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const savedPassword = snapshot.val();
+        if (savedPassword === password) {
+          setIsAuthenticated(true);
+          localStorage.setItem("isAuthenticated", "true");
+          toast.success("Вітаємо! Ви увійшли в систему.");
+        } else {
+          toast.error("Неправильний пароль!");
+        }
+      } else {
+        toast.error("Пароль не знайдено для цього користувача!");
+      }
+    });
+  };
+
+  const registerPassword = async () => {
+    const passwordRef = ref(db, `passwords/${selectedUser}`);
+
+    // Перевірка на існування пароля для користувача
+    onValue(passwordRef, (snapshot) => {
+      if (snapshot.exists()) {
+        toast.error("Пароль вже створений для цього користувача!");
+      } else {
+        set(passwordRef, password)
+          .then(() => {
+            toast.success("Пароль створено!");
+          })
+          .catch((error) => {
+            console.error("Error saving password: ", error);
+            toast.error("Помилка при збереженні пароля!");
+          });
+      }
+    });
+  };
 
   const updateDeviceCount = (device, isAdding, service) => {
+    if (!isAuthenticated) {
+      toast.error("Спочатку увійдіть у систему!");
+      return;
+    }
+
     const updatedCounts = {
       ...deviceCounts,
       [device]: isAdding
@@ -111,7 +160,7 @@ export default function HallControl() {
 
   const saveData = async (data, user) => {
     try {
-      await set(ref(db, `hallControl/${user}`), data); // Зберігаємо дані для конкретного користувача
+      await set(ref(db, `hallControl/${user}`), data);
       console.log(`Data saved to Firebase for ${user}: `, data);
     } catch (error) {
       console.error("Error saving data: ", error);
@@ -128,15 +177,18 @@ export default function HallControl() {
 
   return (
     <div className={styles.hallControl}>
-      <ToastContainer /> {/* Додаємо контейнер для toast */}
+      <ToastContainer />
       <h1 className={styles.title}>Контроль залу</h1>
+
       <label className={styles.label}>Оберіть користувача:</label>
       <select
         className={styles.select}
         value={selectedUser}
         onChange={(e) => {
           setSelectedUser(e.target.value);
-          localStorage.setItem("selectedUser", e.target.value);
+          setPassword(""); // Скидаємо пароль при зміні користувача
+          setIsAuthenticated(false); // Скидаємо автентифікацію
+          localStorage.removeItem("isAuthenticated"); // Очищаємо автентифікацію з localStorage
         }}
       >
         <option value="Нікіта">Нікіта</option>
@@ -144,7 +196,36 @@ export default function HallControl() {
         <option value="Вова">Вова</option>
         <option value="Макс">Макс</option>
       </select>
-      {/* Група Смартфони */}
+
+      {!isAuthenticated && (
+        <div className={styles.authContainer}>
+          <div className={styles.passwordInputContainer}>
+            <input
+              type={showPassword ? "text" : "password"} // Тип поля залежить від стану showPassword
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Введіть пароль"
+              className={styles.passwordInput}
+            />
+            <button
+              type="button"
+              className={styles.showPasswordButton}
+              onClick={() => setShowPassword((prev) => !prev)} // Перемикання видимості пароля
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}{" "}
+              {/* Іконка для показу/приховання пароля */}
+            </button>
+          </div>
+
+          <button onClick={authenticateUser} className={styles.authButton}>
+            Увійти
+          </button>
+          <button onClick={registerPassword} className={styles.authButton}>
+            Створити пароль
+          </button>
+        </div>
+      )}
+
       <div className={styles.deviceAllGroup}>
         <div className={styles.deviceGroup}>
           <h2 className={styles.groupTitle}>Смартфони</h2>
@@ -185,7 +266,6 @@ export default function HallControl() {
           </button>
         </div>
 
-        {/* Група Ноутбуки */}
         <div className={styles.deviceGroup}>
           <h2 className={styles.groupTitle}>Ноутбуки</h2>
           <div className={styles.buttonGrid}>
@@ -225,7 +305,6 @@ export default function HallControl() {
           </button>
         </div>
 
-        {/* Група Планшети */}
         <div className={styles.deviceGroup}>
           <h2 className={styles.groupTitle}>Планшети</h2>
           <div className={styles.buttonGrid}>
@@ -248,7 +327,7 @@ export default function HallControl() {
               className={styles.deviceButtonNegative}
               onClick={() => updateDeviceCount("tablets", false)}
             >
-              - Планш
+              - Планшет
             </button>
             <button
               className={styles.deviceButtonNegative}
@@ -265,7 +344,6 @@ export default function HallControl() {
           </button>
         </div>
 
-        {/* Група Телевізори */}
         <div className={styles.deviceGroup}>
           <h2 className={styles.groupTitle}>Телевізори</h2>
           <div className={styles.buttonGrid}>
@@ -288,7 +366,7 @@ export default function HallControl() {
               className={styles.deviceButtonNegative}
               onClick={() => updateDeviceCount("tvs", false)}
             >
-              - ТВ
+              - Телевізор
             </button>
             <button
               className={styles.deviceButtonNegative}
@@ -305,21 +383,20 @@ export default function HallControl() {
           </button>
         </div>
       </div>
-      <div className={styles.controlPanel}>
-        <button className={styles.resetButton} onClick={resetStatistics}>
-          Скинути статистику
-        </button>
-        <button
-          className={styles.statisticsButton}
-          onClick={handleShowStatistics}
-        >
-          Показати статистику
-        </button>
-      </div>
+      <button
+        onClick={handleShowStatistics}
+        className={styles.statisticsButton}
+      >
+        Показати статистику
+      </button>
+      <button onClick={resetStatistics} className={styles.resetButton}>
+        Скинути статистику
+      </button>
+
       {showStatistics && (
         <StatisticsModal
-          deviceCounts={deviceCounts}
           onClose={handleCloseStatistics}
+          deviceCounts={deviceCounts}
         />
       )}
     </div>

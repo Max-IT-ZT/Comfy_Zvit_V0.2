@@ -20,18 +20,58 @@
   text-align: center;
   margin-top: 10px;
 }
+
+.authContainer {
+  display: flex;
+  flex-direction: column; /* Вертикальне вирівнювання */
+  align-items: center; /* Центрування */
+  margin-bottom: 20px;
+  width: 100%; /* Максимальна ширина контейнера */
+}
+
+.passwordInput {
+  padding: 10px;
+  border-radius: 10px; /* Закруглені кути */
+  border: none; /* Вилучено обводку */
+  background-color: #444; /* Темніший фон */
+  color: white; /* Колір тексту */
+  font-size: 16px; /* Збільшено шрифт для легшого читання */
+  margin-bottom: 10px; /* Відступ внизу */
+}
+
+.authButton {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  background-color: #4caf50; /* Зелений фон */
+  color: white;
+  cursor: pointer;
+  margin-top: 10px; /* Відступ зверху */
+  width: 100%; /* Ширина на 100% */
+  font-size: 16px; /* Збільшено шрифт */
+  transition: background-color 0.3s; /* Плавна зміна кольору */
+}
+
+.authButton:hover {
+  background-color: #45a049; /* Темніший зелений при наведенні */
+}
+
 .deviceAllGroup {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: space-evenly;
+  justify-content: space-evenly; /* Вирівнювання кнопок */
+  margin-bottom: 20px;
 }
+
 .deviceGroup {
   border: 2px solid #ccc;
   border-radius: 10px;
   margin: 5px 0;
   padding: 2px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: calc(50% - 10px); /* Зменшена ширина для двох колонок */
+  /* Зберігається простір між кнопками */
 }
 
 .groupTitle {
@@ -43,7 +83,7 @@
 
 .buttonGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Дві колонки */
+  grid-template-columns: repeat(2, 1fr); /* Дві колонки */
   gap: 5px; /* Відстань між кнопками */
 }
 
@@ -56,6 +96,7 @@
   cursor: pointer;
   font-size: 12px;
 }
+
 .deviceButtonPositivePlus {
   background-color: #4caf50;
   color: white;
@@ -87,6 +128,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
 .resetButton {
   background-color: red;
   color: white;
@@ -100,7 +142,27 @@
 .resetButton:hover {
   background-color: darkred;
 }
+
 .controlPanel {
   display: flex;
   flex-direction: column-reverse;
+}
+.passwordInputContainer {
+  position: relative; /* Встановлюємо позицію для контейнера */
+}
+
+.showPasswordButton {
+  position: absolute; /* Абсолютне позиціонування */
+  right: 5px; /* Відступ з правого боку */
+  top: 45%; /* Вирівнюємо по вертикалі */
+  transform: translateY(-50%); /* Центруємо вертикально */
+  background: none; /* Без фону */
+  border: none; /* Без обводки */
+  color: white; /* Білий колір для іконки */
+  cursor: pointer; /* Курсор при наведенні */
+  font-size: 16px; /* Розмір шрифту */
+}
+
+.showPasswordButton:hover {
+  color: #4caf50; /* Зміна кольору при наведенні */
 }

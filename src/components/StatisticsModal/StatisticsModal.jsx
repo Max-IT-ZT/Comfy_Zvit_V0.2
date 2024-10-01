@@ -89,7 +89,7 @@ const StatisticsModal = ({ onClose }) => {
           <tbody>
             {/* Смартфони */}
             <tr>
-              <td>Сервіс до Смартфонів</td>
+              <td>Сервіс Смарт</td>
               <td>{allUsersData["Нікіта"]?.services || 0}</td>
               <td>{allUsersData["Нікіта2"]?.services || 0}</td>
               <td>{allUsersData["Вова"]?.services || 0}</td>
@@ -132,7 +132,7 @@ const StatisticsModal = ({ onClose }) => {
 
             {/* Ноутбуки */}
             <tr>
-              <td>Сервіс до Ноутбуків</td>
+              <td>Сервіс Ноут</td>
               <td>{allUsersData["Нікіта"]?.laptopServices || 0}</td>
               <td>{allUsersData["Нікіта2"]?.laptopServices || 0}</td>
               <td>{allUsersData["Вова"]?.laptopServices || 0}</td>
@@ -163,7 +163,7 @@ const StatisticsModal = ({ onClose }) => {
 
             {/* Планшети */}
             <tr>
-              <td>Сервіс до Планшетів</td>
+              <td>Сервіс Планш</td>
               <td>{allUsersData["Нікіта"]?.tabletServices || 0}</td>
               <td>{allUsersData["Нікіта2"]?.tabletServices || 0}</td>
               <td>{allUsersData["Вова"]?.tabletServices || 0}</td>
@@ -194,7 +194,7 @@ const StatisticsModal = ({ onClose }) => {
 
             {/* Телевізори */}
             <tr>
-              <td>Сервіс до Тв</td>
+              <td>Сервіс Тв</td>
               <td>{allUsersData["Нікіта"]?.tvServices || 0}</td>
               <td>{allUsersData["Нікіта2"]?.tvServices || 0}</td>
               <td>{allUsersData["Вова"]?.tvServices || 0}</td>
@@ -223,19 +223,25 @@ const StatisticsModal = ({ onClose }) => {
 
         <h3 className={styles.totalStatsTitle}>Загальна статистика:</h3>
         <p className={styles.totalStat}>
-          Смартфони: {totalStatistics.smartphones.total} шт (з сервісом:{" "}
-          {totalStatistics.smartphones.service} шт, %:{" "}
-          {totalStatistics.smartphones.total
+          Смарт + Планш:{" "}
+          {totalStatistics.smartphones.total + totalStatistics.tablets.total} шт
+          (сервіс:{" "}
+          {totalStatistics.smartphones.service +
+            totalStatistics.tablets.service}{" "}
+          шт, %:{" "}
+          {totalStatistics.smartphones.total + totalStatistics.tablets.total
             ? Math.round(
-                (totalStatistics.smartphones.service /
-                  totalStatistics.smartphones.total) *
+                ((totalStatistics.smartphones.service +
+                  totalStatistics.tablets.service) /
+                  (totalStatistics.smartphones.total +
+                    totalStatistics.tablets.total)) *
                   100
               )
             : 0}
           %)
         </p>
         <p className={styles.totalStat}>
-          Ноутбуки: {totalStatistics.laptops.total} шт (з сервісом:{" "}
+          Ноутбуки: {totalStatistics.laptops.total} шт (сервіс:{" "}
           {totalStatistics.laptops.service} шт, %:{" "}
           {totalStatistics.laptops.total
             ? Math.round(
@@ -247,19 +253,7 @@ const StatisticsModal = ({ onClose }) => {
           %)
         </p>
         <p className={styles.totalStat}>
-          Планшети: {totalStatistics.tablets.total} шт (з сервісом:{" "}
-          {totalStatistics.tablets.service} шт, %:{" "}
-          {totalStatistics.tablets.total
-            ? Math.round(
-                (totalStatistics.tablets.service /
-                  totalStatistics.tablets.total) *
-                  100
-              )
-            : 0}
-          %)
-        </p>
-        <p className={styles.totalStat}>
-          Телевізори: {totalStatistics.tvs.total} шт (з сервісом:{" "}
+          Телевізори: {totalStatistics.tvs.total} шт (сервіс:{" "}
           {totalStatistics.tvs.service} шт, %:{" "}
           {totalStatistics.tvs.total
             ? Math.round(
@@ -268,6 +262,7 @@ const StatisticsModal = ({ onClose }) => {
             : 0}
           %)
         </p>
+
         <button className={styles.closeButton} onClick={onClose}>
           Закрити звіт
         </button>
