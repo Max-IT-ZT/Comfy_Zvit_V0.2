@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { db, ref, set } from "../../firebase";
+import { useState, useEffect } from "react";
+import { db, ref, set, onValue } from "../../firebase"; // Імпортуємо onValue для слухача
 import StatisticsModal from "../StatisticsModal/StatisticsModal.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // імпортуємо стиль для toast
@@ -21,18 +21,43 @@ export default function HallControl() {
   });
   const [showStatistics, setShowStatistics] = useState(false);
 
+  // Функція для отримання даних з Firebase при монтуванні компонента
+  useEffect(() => {
+    const fetchData = () => {
+      const userRef = ref(db, `hallControl/${selectedUser}`);
+      onValue(userRef, (snapshot) => {
+        if (snapshot.exists()) {
+          setDeviceCounts(snapshot.val());
+        } else {
+          setDeviceCounts({
+            smartphones: 0,
+            services: 0,
+            laptops: 0,
+            laptopServices: 0,
+            tablets: 0,
+            tabletServices: 0,
+            tvs: 0,
+            tvServices: 0,
+          });
+        }
+      });
+    };
+
+    fetchData();
+  }, [selectedUser]); // Викликаємо при зміні вибраного користувача
+
   const updateDeviceCount = (device, isAdding, service) => {
     const updatedCounts = {
       ...deviceCounts,
       [device]: isAdding
-        ? deviceCounts[device] + 1
-        : Math.max(deviceCounts[device] - 1, 0),
+        ? (deviceCounts[device] || 0) + 1
+        : Math.max((deviceCounts[device] || 0) - 1, 0),
     };
 
     if (service) {
       updatedCounts[service] = isAdding
-        ? deviceCounts[service] + 1
-        : Math.max(deviceCounts[service] - 1, 0);
+        ? (deviceCounts[service] || 0) + 1
+        : Math.max((deviceCounts[service] || 0) - 1, 0);
     }
 
     setDeviceCounts(updatedCounts);
@@ -68,7 +93,7 @@ export default function HallControl() {
   };
 
   const resetStatistics = () => {
-    setDeviceCounts({
+    const resetCounts = {
       smartphones: 0,
       services: 0,
       laptops: 0,
@@ -77,27 +102,16 @@ export default function HallControl() {
       tabletServices: 0,
       tvs: 0,
       tvServices: 0,
-    });
-    saveData(
-      {
-        smartphones: 0,
-        services: 0,
-        laptops: 0,
-        laptopServices: 0,
-        tablets: 0,
-        tabletServices: 0,
-        tvs: 0,
-        tvServices: 0,
-      },
-      selectedUser
-    );
+    };
 
+    setDeviceCounts(resetCounts);
+    saveData(resetCounts, selectedUser);
     toast.info("Статистику скинуто");
   };
 
   const saveData = async (data, user) => {
     try {
-      await set(ref(db, `hallControl/${user}`), data);
+      await set(ref(db, `hallControl/${user}`), data); // Зберігаємо дані для конкретного користувача
       console.log(`Data saved to Firebase for ${user}: `, data);
     } catch (error) {
       console.error("Error saving data: ", error);
@@ -291,16 +305,17 @@ export default function HallControl() {
           </button>
         </div>
       </div>
-      <button
-        className={styles.statisticsButton}
-        onClick={handleShowStatistics}
-      >
-        Показати статистику
-      </button>
-      {/* Кнопка для скидання статистики */}
-      <button className={styles.resetButton} onClick={resetStatistics}>
-        Скинути статистику
-      </button>
+      <div className={styles.controlPanel}>
+        <button className={styles.resetButton} onClick={resetStatistics}>
+          Скинути статистику
+        </button>
+        <button
+          className={styles.statisticsButton}
+          onClick={handleShowStatistics}
+        >
+          Показати статистику
+        </button>
+      </div>
       {showStatistics && (
         <StatisticsModal
           deviceCounts={deviceCounts}
