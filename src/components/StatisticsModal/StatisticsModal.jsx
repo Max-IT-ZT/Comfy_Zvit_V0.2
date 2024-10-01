@@ -24,6 +24,29 @@ const StatisticsModal = ({ onClose }) => {
     return () => unsubscribe();
   }, []);
 
+  const calculatePenetration = (category, user) => {
+    const total = user[category] || 0; // Загальна кількість пристроїв
+
+    let service;
+    switch (category) {
+      case "smartphones":
+        service = user.services || 0; // Сервіси для смартфонів
+        break;
+      case "laptops":
+        service = user.laptopServices || 0; // Сервіси для ноутбуків
+        break;
+      case "tablets":
+        service = user.tabletServices || 0; // Сервіси для планшетів
+        break;
+      case "tvs":
+        service = user.tvServices || 0; // Сервіси для телевізорів
+        break;
+      default:
+        service = 0; // Якщо категорія не вказана, сервісів немає
+    }
+
+    return total > 0 ? `${Math.round((service / total) * 100)}%` : "0%";
+  };
   const calculateTotalStatistics = (data) => {
     const newStatistics = {
       smartphones: { total: 0, service: 0 },
@@ -61,7 +84,6 @@ const StatisticsModal = ({ onClose }) => {
               <th>Нікіта2</th>
               <th>Вова</th>
               <th>Макс</th>
-              <th>%</th>
             </tr>
           </thead>
           <tbody>
@@ -72,16 +94,6 @@ const StatisticsModal = ({ onClose }) => {
               <td>{allUsersData["Нікіта2"]?.services || 0}</td>
               <td>{allUsersData["Вова"]?.services || 0}</td>
               <td>{allUsersData["Макс"]?.services || 0}</td>
-              <td>
-                {totalStatistics.smartphones.total
-                  ? Math.round(
-                      (totalStatistics.smartphones.service /
-                        totalStatistics.smartphones.total) *
-                        100
-                    )
-                  : 0}
-                %
-              </td>
             </tr>
             <tr>
               <td>Смартфони</td>
@@ -89,7 +101,33 @@ const StatisticsModal = ({ onClose }) => {
               <td>{allUsersData["Нікіта2"]?.smartphones || 0}</td>
               <td>{allUsersData["Вова"]?.smartphones || 0}</td>
               <td>{allUsersData["Макс"]?.smartphones || 0}</td>
-              <td></td>
+            </tr>
+            <tr>
+              <td>Проникнення Смар</td>
+              <td>
+                {calculatePenetration(
+                  "smartphones",
+                  allUsersData["Нікіта"] || {}
+                )}
+              </td>
+              <td>
+                {calculatePenetration(
+                  "smartphones",
+                  allUsersData["Нікіта2"] || {}
+                )}
+              </td>
+              <td>
+                {calculatePenetration(
+                  "smartphones",
+                  allUsersData["Вова"] || {}
+                )}
+              </td>
+              <td>
+                {calculatePenetration(
+                  "smartphones",
+                  allUsersData["Макс"] || {}
+                )}
+              </td>
             </tr>
 
             {/* Ноутбуки */}
@@ -99,16 +137,6 @@ const StatisticsModal = ({ onClose }) => {
               <td>{allUsersData["Нікіта2"]?.laptopServices || 0}</td>
               <td>{allUsersData["Вова"]?.laptopServices || 0}</td>
               <td>{allUsersData["Макс"]?.laptopServices || 0}</td>
-              <td>
-                {totalStatistics.laptops.total
-                  ? Math.round(
-                      (totalStatistics.laptops.service /
-                        totalStatistics.laptops.total) *
-                        100
-                    )
-                  : 0}
-                %
-              </td>
             </tr>
             <tr>
               <td>Ноутбуки</td>
@@ -116,7 +144,21 @@ const StatisticsModal = ({ onClose }) => {
               <td>{allUsersData["Нікіта2"]?.laptops || 0}</td>
               <td>{allUsersData["Вова"]?.laptops || 0}</td>
               <td>{allUsersData["Макс"]?.laptops || 0}</td>
-              <td></td>
+            </tr>
+            <tr>
+              <td>Проникнення Ноут</td>
+              <td>
+                {calculatePenetration("laptops", allUsersData["Нікіта"] || {})}
+              </td>
+              <td>
+                {calculatePenetration("laptops", allUsersData["Нікіта2"] || {})}
+              </td>
+              <td>
+                {calculatePenetration("laptops", allUsersData["Вова"] || {})}
+              </td>
+              <td>
+                {calculatePenetration("laptops", allUsersData["Макс"] || {})}
+              </td>
             </tr>
 
             {/* Планшети */}
@@ -126,16 +168,6 @@ const StatisticsModal = ({ onClose }) => {
               <td>{allUsersData["Нікіта2"]?.tabletServices || 0}</td>
               <td>{allUsersData["Вова"]?.tabletServices || 0}</td>
               <td>{allUsersData["Макс"]?.tabletServices || 0}</td>
-              <td>
-                {totalStatistics.tablets.total
-                  ? Math.round(
-                      (totalStatistics.tablets.service /
-                        totalStatistics.tablets.total) *
-                        100
-                    )
-                  : 0}
-                %
-              </td>
             </tr>
             <tr>
               <td>Планшети</td>
@@ -143,7 +175,21 @@ const StatisticsModal = ({ onClose }) => {
               <td>{allUsersData["Нікіта2"]?.tablets || 0}</td>
               <td>{allUsersData["Вова"]?.tablets || 0}</td>
               <td>{allUsersData["Макс"]?.tablets || 0}</td>
-              <td></td>
+            </tr>
+            <tr>
+              <td>Проникнення Планш</td>
+              <td>
+                {calculatePenetration("tablets", allUsersData["Нікіта"] || {})}
+              </td>
+              <td>
+                {calculatePenetration("tablets", allUsersData["Нікіта2"] || {})}
+              </td>
+              <td>
+                {calculatePenetration("tablets", allUsersData["Вова"] || {})}
+              </td>
+              <td>
+                {calculatePenetration("tablets", allUsersData["Макс"] || {})}
+              </td>
             </tr>
 
             {/* Телевізори */}
@@ -153,16 +199,6 @@ const StatisticsModal = ({ onClose }) => {
               <td>{allUsersData["Нікіта2"]?.tvServices || 0}</td>
               <td>{allUsersData["Вова"]?.tvServices || 0}</td>
               <td>{allUsersData["Макс"]?.tvServices || 0}</td>
-              <td>
-                {totalStatistics.tvs.total
-                  ? Math.round(
-                      (totalStatistics.tvs.service /
-                        totalStatistics.tvs.total) *
-                        100
-                    )
-                  : 0}
-                %
-              </td>
             </tr>
             <tr>
               <td>Телевізори</td>
@@ -170,7 +206,17 @@ const StatisticsModal = ({ onClose }) => {
               <td>{allUsersData["Нікіта2"]?.tvs || 0}</td>
               <td>{allUsersData["Вова"]?.tvs || 0}</td>
               <td>{allUsersData["Макс"]?.tvs || 0}</td>
-              <td></td>
+            </tr>
+            <tr>
+              <td>Проникнення Тв</td>
+              <td>
+                {calculatePenetration("tvs", allUsersData["Нікіта"] || {})}
+              </td>
+              <td>
+                {calculatePenetration("tvs", allUsersData["Нікіта2"] || {})}
+              </td>
+              <td>{calculatePenetration("tvs", allUsersData["Вова"] || {})}</td>
+              <td>{calculatePenetration("tvs", allUsersData["Макс"] || {})}</td>
             </tr>
           </tbody>
         </table>

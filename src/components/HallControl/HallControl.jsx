@@ -168,7 +168,7 @@ export default function HallControl() {
               className={styles.deviceButtonNegative}
               onClick={() => updateDeviceCount("smartphones", false)}
             >
-              - Смартфон
+              - Смарт
             </button>
             <button
               className={styles.deviceButtonNegative}
@@ -208,7 +208,7 @@ export default function HallControl() {
               className={styles.deviceButtonNegative}
               onClick={() => updateDeviceCount("laptops", false)}
             >
-              - Ноутбук
+              - Ноут
             </button>
             <button
               className={styles.deviceButtonNegative}
@@ -248,7 +248,7 @@ export default function HallControl() {
               className={styles.deviceButtonNegative}
               onClick={() => updateDeviceCount("tablets", false)}
             >
-              - Планшет
+              - Планш
             </button>
             <button
               className={styles.deviceButtonNegative}
@@ -288,7 +288,7 @@ export default function HallControl() {
               className={styles.deviceButtonNegative}
               onClick={() => updateDeviceCount("tvs", false)}
             >
-              - Телевізор
+              - ТВ
             </button>
             <button
               className={styles.deviceButtonNegative}
