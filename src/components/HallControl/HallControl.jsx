@@ -51,6 +51,16 @@ export default function HallControl() {
     fetchData();
   }, [selectedUser]);
 
+  useEffect(() => {
+    // Відновлення вибраного користувача та автентифікації при завантаженні
+    const storedUser = localStorage.getItem("selectedUser");
+    const storedAuth = localStorage.getItem("isAuthenticated") === "true";
+    if (storedUser) {
+      setSelectedUser(storedUser);
+      setIsAuthenticated(storedAuth);
+    }
+  }, []);
+
   const authenticateUser = async () => {
     const passwordRef = ref(db, `passwords/${selectedUser}`);
 
@@ -60,6 +70,7 @@ export default function HallControl() {
         if (savedPassword === password) {
           setIsAuthenticated(true);
           localStorage.setItem("isAuthenticated", "true");
+          localStorage.setItem("selectedUser", selectedUser); // Зберігаємо вибраного користувача
           toast.success("Вітаємо! Ви увійшли в систему.");
         } else {
           toast.error("Неправильний пароль!");
