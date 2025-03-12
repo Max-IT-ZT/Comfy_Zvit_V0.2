@@ -22,7 +22,8 @@ export default function UserForm({ plan, onSumItChange }) {
   };
 
   const handleSubmitForm = (values, actions) => {
-    const { sumIt, sumHs, percentageIt, percentageHs, phone, tv, pc } = values;
+    const { sumIt, sumHs, percentageIt, percentageHs, phone, tv, pc, trade } =
+      values;
 
     const todayPlan = plan.find((item) => item.day === today);
 
@@ -47,6 +48,9 @@ export default function UserForm({ plan, onSumItChange }) {
       }
       if (tv || tv === 0) {
         modalMessage += `\n📺 - ${tv}шт.`;
+      }
+      if (trade || trade === 0) {
+        modalMessage += `\nTrade-In - ${trade}шт.`;
       }
       const sumItPlanCompleted = sumIt - todayPlan.it;
       const sumHsPlanCompleted = sumHs - todayPlan.hs;
@@ -138,6 +142,7 @@ export default function UserForm({ plan, onSumItChange }) {
           phone: "",
           tv: "",
           pc: "",
+          trade: "",
         }}
         onSubmit={handleSubmitForm}
       >
@@ -270,6 +275,24 @@ export default function UserForm({ plan, onSumItChange }) {
                 className={`${css.label} ${values.tv !== "" && css.filled}`}
               >
                 Кількість Телевізорів
+              </label>
+            </div>
+
+            <div className={css.inputWrapper}>
+              <Field
+                type="number"
+                inputMode="numeric"
+                name="trade"
+                id="trade"
+                className={css.input}
+                value={values.trade}
+                onChange={handleChange}
+              />
+              <label
+                htmlFor="trade"
+                className={`${css.label} ${values.trade !== "" && css.filled}`}
+              >
+                Кількість Trade-in
               </label>
             </div>
 
